@@ -6,6 +6,7 @@ function ProGallery({proId,fun}) {
     const [loading,setLoading] = useState('')
     const [gallery,setGallery] = useState([])
 
+    console.log(proId,'okokokokook')
     useEffect(() => {
         setLoading(true);
         try {
@@ -13,6 +14,7 @@ function ProGallery({proId,fun}) {
             const response = await proAxios.post("getGallery", {proId});
             if (response) {
               setGallery(response.data.gallery);
+              console.log(response.data.gallery)
               setLoading(false); // Set loading to false after the API call completes
             }
           };
