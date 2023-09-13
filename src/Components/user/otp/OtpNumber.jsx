@@ -4,8 +4,7 @@ import { CgSpinner } from 'react-icons/cg'
 import { BsFillShieldLockFill } from 'react-icons/bs'
 import { Toaster, toast } from 'react-hot-toast'
 import {RecaptchaVerifier, signInWithPhoneNumber } from "firebase/auth";
-import { auth } from '../../../Firebase/Firebase.config';
-
+import {auth} from '../../../Firebase/Firebase.config';
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { ClientLogin } from '../../../Redux/userState'
