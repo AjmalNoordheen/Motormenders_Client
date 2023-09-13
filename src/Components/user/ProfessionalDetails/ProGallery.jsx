@@ -12,7 +12,6 @@ function ProGallery({proId,fun}) {
           const getGallery = async () => {
             const response = await proAxios.post("getGallery", {proId});
             if (response) {
-                console.log(response,'kokokokok')
               setGallery(response.data.gallery);
               setLoading(false); // Set loading to false after the API call completes
             }
