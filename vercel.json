@@ -2,7 +2,7 @@
 	"rewrites": [
 	  {
 		"source": "/api/:path*",
-		"destination": "https://www.motormenders.online"
+		"destination": "https://api.motormenders.online"
 	  }
 	]
   }
