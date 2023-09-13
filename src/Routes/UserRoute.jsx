@@ -14,7 +14,7 @@ import RazorPay from '../Components/Paypal/RazorPay'
 import UsersBooking from '../Pages/User/UsersBooking'
 import { useSelector } from 'react-redux'
 import Errorpage from '../Components/ReuseItems/Errorpage'
-import UserWallet from '../Pages/User/userWallet'
+import UserWallet from '../Pages/User/UserWallet'
 
 
 function UserRoute() {
