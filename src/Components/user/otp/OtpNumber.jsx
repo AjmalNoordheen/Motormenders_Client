@@ -4,7 +4,7 @@ import { CgSpinner } from 'react-icons/cg'
 import { BsFillShieldLockFill } from 'react-icons/bs'
 import { Toaster, toast } from 'react-hot-toast'
 import {RecaptchaVerifier, signInWithPhoneNumber } from "firebase/auth";
-import { Auth } from '../../../Firebase/firebase.config'
+import { auth } from '../../../Firebase/Firebases.config'
 
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
@@ -36,7 +36,7 @@ function OtpLogin() {
           onCaptchaVerify()
           const appVerifier = window.recaptchaVerifier
           const phoneNo = '+91' + phone
-          signInWithPhoneNumber(Auth, phoneNo, appVerifier)
+          signInWithPhoneNumber(auth, phoneNo, appVerifier)
             .then((confirmationResult) => {
               console.log('asdfsdfsdfsdf');
               window.confirmationResult = confirmationResult;
@@ -67,7 +67,7 @@ function OtpLogin() {
         'expired-callback': () => {
           console.log('expired callback');
         }
-      }, Auth);
+      }, auth);
     }
 
   }
