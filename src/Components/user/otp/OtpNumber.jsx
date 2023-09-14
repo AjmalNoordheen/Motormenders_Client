@@ -2,17 +2,15 @@ import React, { useEffect, useRef, useState } from 'react'
 import OtpInput from 'otp-input-react'
 // import { CgSpinner } from 'react-icons/cg'
 import { BsFillShieldLockFill } from 'react-icons/bs'
-import { Toaster, toast } from 'react-hot-toast'
 import {RecaptchaVerifier, signInWithPhoneNumber } from "firebase/auth";
 import { auth } from '../../../Firebase/Firebases.config'
-
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { ClientLogin } from '../../../Redux/userState'
 import createAxiosInstance from '../../../Axios/userAxios'
+import toast from 'react-hot-toast';
 
 function OtpLogin() {
-
   const regex_mobile = /^\d{10}$/
   const [clicked, setClicked] = useState(false)
   const [showOTP, setShowOTP] = useState(false)
@@ -26,39 +24,38 @@ function OtpLogin() {
 
   const checkMob = () => {
     setResend(false)
-    // if ((regex_mobile.test(phone) == false)) {  
-    //   console.log('llllppppl');
-    //   toast.error('Enter valid mobile number')
-    // } else {
       let newPhone = phone.trim()
       if (newPhone.length!==10) {  
         toast.error('Enter a valid number')
         return
-      } 
-       userAxios.post('/otpLogin', { newPhone }).then((res) => {
-        if (res.data.message == 'success') {
-          setData(res.data.data)
-          onCaptchaVerify()
-          const appVerifier = window.recaptchaVerifier
-          const phoneNo = '+91' + phone
-          signInWithPhoneNumber(auth, phoneNo, appVerifier)
-            .then((confirmationResult) => {
-              window.confirmationResult = confirmationResult;
-              setShowOTP(true)
-              toast.success('OTP send')
-            }).catch((error) => {
-              console.log(error);
-              if (error?.response?.data?.errMsg) {
-                toast.error(error?.response?.data?.errMsg)
+      } else{
+        userAxios.post('/otpLogin', { newPhone }).then((res) => {
+          if (res.data.message == 'success') {
+            setData(res.data.data)
+            onCaptchaVerify()
+            const appVerifier = window.recaptchaVerifier
+            const phoneNo = '+91' + phone
+            signInWithPhoneNumber(auth, phoneNo, appVerifier)
+              .then((confirmationResult) => {
+                window.confirmationResult = confirmationResult;
+                setShowOTP(true)
+                toast.success('OTP send')
+              }).catch((error) => {
                 console.log(error);
-              }
-            });
-        }else{
+                if (error?.response?.data?.errMsg) {
+                  toast.error(error?.response?.data?.errMsg)
+                  console.log(error);
+                }
+              });
+          }else{
+            toast.error(res.data.errMsg)
+          }
+        }).catch((err)=>{
+          console.log(err)
           toast.error(res.data.errMsg)
-        }
-      }).catch((err)=>{
-        console.log(err)
-      })
+        }) 
+           }
+     
   }
 
   function onCaptchaVerify() {
