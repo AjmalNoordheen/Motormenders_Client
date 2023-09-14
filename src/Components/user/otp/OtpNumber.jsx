@@ -55,35 +55,23 @@ function OtpLogin() {
       })
     // }
   }
-
-  // function onCaptchaVerify() {
-
-  //   if (!window.recaptchaVerifier) {
-  //     window.recaptchaVerifier = new RecaptchaVerifier('recaptcha-container', {
-  //       size: 'invisible',
-  //       callback: (response) => {
-  //         checkMob()
-  //       },
-  //       'expired-callback': () => {
-  //         console.log('expired callback');
-  //       }
-  //     }, auth);
-  //   }
-
-  // }
+  auth().settings?.isAppVerificationDisabledForTesting = true
   function onCaptchaVerify() {
+
     if (!window.recaptchaVerifier) {
-      window.recaptchaVerifier = new RecaptchaVerifier('recaptcha-container', {
+      window.recaptchaVerifier = new  RecaptchaVerifier('recaptcha-container', {
         size: 'invisible',
         callback: (response) => {
-          checkMob();
+          checkMob()
         },
         'expired-callback': () => {
           console.log('expired callback');
         }
       }, auth);
     }
+
   }
+
   
 
   function otpVerify() {
@@ -150,7 +138,14 @@ function OtpLogin() {
          {showOTP&&<div className='flex justify-center'>
             <span className='text-center text-white'>{seconds}</span>
           </div>}
-          {!showOTP ? <button className='text-white mt-3 bg-gray-600 w-full flex gap-1 items-center justify-center py-2.5 rounded' onClick={checkMob}><span>Send Otp</span></button> : resend ? <button className='text-white mt-3 bg-green-800 w-full flex gap-1 items-center justify-center py-2.5 rounded' onClick={checkMob}>{clicked ? <CgSpinner size={20} className='animate-spin' /> : ''}<span>Resend Otp</span></button> : <button className='text-white mt-3 bg-green-800 w-full flex gap-1 items-center justify-center py-2.5 rounded' onClick={otpVerify}>{clicked ? <CgSpinner size={20} className='animate-spin' /> : ''}<span>Verify OTP</span></button>}
+          {!showOTP ? <button className='text-white mt-3 bg-gray-600 w-full flex gap-1 items-center justify-center py-2.5 rounded' onClick={checkMob}><span>Send Otp</span></button> : resend ? 
+          <button className='text-white mt-3 bg-green-800 w-full flex gap-1 items-center justify-center py-2.5 rounded' 
+          onClick={checkMob}>{clicked ?               
+             <i class="fa-solid fa-spinner animate-spin"></i>
+          : ''}<span>Resend Otp</span></button> 
+          : <button className='text-white mt-3 bg-green-800 w-full flex gap-1 items-center justify-center py-2.5 rounded' 
+          onClick={otpVerify}>{clicked ?<i class="fa-solid fa-spinner animate-spin"></i>
+          : ''}<span>Verify OTP</span></button>}
         </div>
 
       </div>
