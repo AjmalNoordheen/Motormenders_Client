@@ -5,9 +5,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import createAxiosInstance from '../../../Axios/proAxios'
 import "react-toastify/dist/ReactToastify.css";
 import { toast } from 'react-toastify';
-import { Link, useNavigate } from "react-router-dom";
+import {useNavigate } from "react-router-dom";
 import { ProfessionalLogout } from "../../../Redux/ProState";
-import SideBar from "../ReuseItems/SideBar";
 import { NavBar } from "../NavBar/NavBar";
 
 function HomePro() {
@@ -20,6 +19,7 @@ function HomePro() {
   const ProAxios = createAxiosInstance()
   const email = useSelector((state) =>state.Proffessional.email);
   const proData = useSelector((state)=>state.Proffessional.proData)
+  console.log(proData)
   const dispatch = useDispatch()
   const navigate = useNavigate()
 useEffect(() => {
@@ -36,7 +36,7 @@ useEffect(() => {
     console.log('worked');
    }
   })
-}, []);
+},[]);
 
 useEffect(()=>{
   ProAxios.get(`/listAllBooking?id=${proData._id}&status=${'total'}`).then((res)=>{
