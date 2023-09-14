@@ -8,7 +8,7 @@ import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { ClientLogin } from '../../../Redux/userState'
 import createAxiosInstance from '../../../Axios/userAxios'
-import toast from 'react-hot-toast';
+import { Toaster, toast } from 'react-hot-toast'
 
 function OtpLogin() {
   const regex_mobile = /^\d{10}$/
