@@ -50,6 +50,7 @@ function OtpLogin() {
             toast.error("User not found")
           }
         }).catch((err)=>{
+          console.log(err)
           toast.error('User not Found')
         }) 
            }
