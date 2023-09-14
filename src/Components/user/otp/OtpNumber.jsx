@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom'
 import { ClientLogin } from '../../../Redux/userState'
 import createAxiosInstance from '../../../Axios/userAxios'
 import { Toaster, toast } from 'react-hot-toast'
+import { CgSpinner } from 'react-icons/cg'
 
 function OtpLogin() {
   const regex_mobile = /^\d{10}$/
@@ -114,43 +115,36 @@ function OtpLogin() {
   }, [seconds]);
 
   return (
-    <div style={{ 'height': '100vh' }} className='bg-blue-300 flex justify-center items-center'>
-      <div id='recaptcha-container'></div>
-      <div className=' bg-gray-900 p-5 rounded'>
-        <Toaster toastOptions={3000} /><div className='bg-white text-emarald-500 w-fit mx-auto p-4 rounded-full'>
-          <BsFillShieldLockFill size={30} />
-        </div>
-        {showOTP ? <h1 className='text-white font-bold text-center mt-2'>Enter Your OTP</h1> : <h1 className='text-white font-bold text-center mt-2'>Enter Your Mobile</h1>}
-        <div className='p-5'>
-          {showOTP ? <OtpInput
-            className='ms-3'
-            OTPLength={6}
-            value={otp}
-            onChange={setOtp}
-            otpType='number'
-            disabled={false}
-            autoFocus
-          /> : <input
-            type="number"
-            onChange={(e) => setPhone(e.target.value)}
-            className="block border border-grey-light w-full p-3 rounded mb-4"
-            name="phone"
-            placeholder="phone No"/>}
-         {showOTP&&<div className='flex justify-center'>
-            <span className='text-center text-white'>{seconds}</span>
-          </div>}
-          {!showOTP ? <button className='text-white mt-3 bg-gray-600 w-full flex gap-1 items-center justify-center py-2.5 rounded' onClick={checkMob}><span>Send Otp</span></button> : resend ? 
-          <button className='text-white mt-3 bg-green-800 w-full flex gap-1 items-center justify-center py-2.5 rounded' 
-          onClick={checkMob}>{clicked ?               
-             <i class="fa-solid fa-spinner animate-spin"></i>
-          : ''}<span>Resend Otp</span></button> 
-          : <button className='text-white mt-3 bg-green-800 w-full flex gap-1 items-center justify-center py-2.5 rounded' 
-          onClick={otpVerify}>{clicked ?<i class="fa-solid fa-spinner animate-spin"></i>
-          : ''}<span>Verify OTP</span></button>}
-        </div>
-
+    <div style={{ 'height': '100vh' }} className='bg-gray-800 flex justify-center items-center'>
+    <div id='recaptcha-container'></div>
+    <div className=' bg-gray-900 p-5 rounded'>
+      <Toaster toastOptions={3000} /><div className='bg-white text-emarald-500 w-fit mx-auto p-4 rounded-full'>
+        <BsFillShieldLockFill size={30} />
       </div>
+      {showOTP ? <h1 className='text-white font-bold text-center mt-2'>Enter Your OTP</h1> : <h1 className='text-white font-bold text-center mt-2'>Enter Your Mobile</h1>}
+      <div className='p-5 '>
+        {showOTP ? <OtpInput
+          className='ms-3'
+          OTPLength={6}
+          value={otp}
+          onChange={setOtp}
+          otpType='number'
+          disabled={false}
+          autoFocus
+        /> : <input
+          type="number"
+          onChange={(e) => setPhone(e.target.value)}
+          className="block border border-grey-light w-full p-3 rounded mb-4"
+          name="phone"
+          placeholder="phone No" />}
+       {showOTP&&<div className='flex justify-center'>
+          <span className='text-center text-white'>{seconds}</span>
+        </div>}
+        {!showOTP ? <button className='text-white mt-3 bg-gray-600 w-full flex gap-1 items-center justify-center py-2.5 rounded' onClick={checkMob}><span>Send Otp</span></button> : resend ? <button className='text-white mt-3 bg-green-800 w-full flex gap-1 items-center justify-center py-2.5 rounded' onClick={checkMob}>{clicked ? <CgSpinner size={20} className='animate-spin' /> : ''}<span>Resend Otp</span></button> : <button className='text-white mt-3 bg-green-800 w-full flex gap-1 items-center justify-center py-2.5 rounded' onClick={otpVerify}>{clicked ? <CgSpinner size={20} className='animate-spin' /> : ''}<span>Verify OTP</span></button>}
+      </div>
+
     </div>
+  </div>
   )
 }
 

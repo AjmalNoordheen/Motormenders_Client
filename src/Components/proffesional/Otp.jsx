@@ -3,7 +3,7 @@ import OtpInput from 'otp-input-react'
 import { CgSpinner } from 'react-icons/cg'
 import { BsFillShieldLockFill } from 'react-icons/bs'
 import { Toaster, toast } from 'react-hot-toast'
-import { getAuth, RecaptchaVerifier, signInWithPhoneNumber } from "firebase/auth";
+import { RecaptchaVerifier, signInWithPhoneNumber } from "firebase/auth";
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import createAxiosInstance from '../../Axios/proAxios'
