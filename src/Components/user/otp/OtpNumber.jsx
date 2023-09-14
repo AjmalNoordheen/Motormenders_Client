@@ -132,11 +132,11 @@ function OtpLogin() {
             disabled={false}
             autoFocus
           /> : <input
-            type="text"
+            type="number"
             onChange={(e) => setPhone(e.target.value)}
             className="block border border-grey-light w-full p-3 rounded mb-4"
             name="phone"
-            placeholder="phone No" limit={10}/>}
+            placeholder="phone No"/>}
          {showOTP&&<div className='flex justify-center'>
             <span className='text-center text-white'>{seconds}</span>
           </div>}
