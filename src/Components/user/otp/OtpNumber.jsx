@@ -56,21 +56,35 @@ function OtpLogin() {
     // }
   }
 
-  function onCaptchaVerify() {
+  // function onCaptchaVerify() {
 
+  //   if (!window.recaptchaVerifier) {
+  //     window.recaptchaVerifier = new RecaptchaVerifier('recaptcha-container', {
+  //       size: 'invisible',
+  //       callback: (response) => {
+  //         checkMob()
+  //       },
+  //       'expired-callback': () => {
+  //         console.log('expired callback');
+  //       }
+  //     }, auth);
+  //   }
+
+  // }
+  function onCaptchaVerify() {
     if (!window.recaptchaVerifier) {
       window.recaptchaVerifier = new RecaptchaVerifier('recaptcha-container', {
         size: 'invisible',
         callback: (response) => {
-          checkMob()
+          checkMob();
         },
         'expired-callback': () => {
           console.log('expired callback');
         }
       }, auth);
     }
-
   }
+  
 
   function otpVerify() {
     setClicked(true)
