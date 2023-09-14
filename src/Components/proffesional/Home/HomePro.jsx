@@ -39,20 +39,25 @@ useEffect(() => {
 },[]);
 
 useEffect(()=>{
-  ProAxios.get(`/listAllBooking?id=${proData._id}&status=${'total'}`).then((res)=>{
-    setTotalCount(res.data)
-  })
+  if(proData){
+    ProAxios.get(`/listAllBooking?id=${proData._id?proData._id:''}&status=${'total'}`).then((res)=>{
+      setTotalCount(res.data)
+    })
+  }
 },[])
 useEffect(()=>{
-  ProAxios.get(`/listAllBooking?id=${proData._id}&status=${'completed'}`).then((res)=>{
-      if(res.data){
-        setTotalCompleted(res.data)
-      }
-  })
+if(proData){
+  ProAxios.get(`/listAllBooking?id=${proData._id?proData._id:''}&status=${'completed'}`).then((res)=>{
+    if(res.data){
+      setTotalCompleted(res.data)
+    }
+})
+}
 },[])
 console.log(allBookings)
 useEffect(()=>{
-  ProAxios.get(`/listAllBooking?id=${proData._id}&status=${'all'}`).then((res)=>{
+ if(proData){
+  ProAxios.get(`/listAllBooking?id=${proData._id?proData._id:''}&status=${'all'}`).then((res)=>{
     if(res.data.status===false){
       setTimeout(() => {
         dispatch(ProfessionalLogout(''))
@@ -65,12 +70,14 @@ useEffect(()=>{
       setallBookings(res.data)
     }
   })
+ }
 },[])
 
 console.log(Array.isArray(allBookings)
 )
 useEffect(()=>{
-  ProAxios.get(`/listAllBooking?id=${proData._id}&status=${'pending'}`).then((res)=>{
+ if(proData){
+  ProAxios.get(`/listAllBooking?id=${proData._id?proData._id:''}&status=${'pending'}`).then((res)=>{
     if(res.data.status===false){
       setTimeout(() => {
         dispatch(ProfessionalLogout(''))
@@ -84,6 +91,7 @@ useEffect(()=>{
       setTotalPending(0)
     }
   })
+ }
 },[])
   
 
