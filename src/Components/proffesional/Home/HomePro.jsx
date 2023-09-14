@@ -19,7 +19,7 @@ function HomePro() {
   const ProAxios = createAxiosInstance()
   const email = useSelector((state) =>state.Proffessional.email);
   const proData = useSelector((state)=>state.Proffessional.proData)
-  console.log(proData)
+  console.log(email,'opopoppopo')
   const dispatch = useDispatch()
   const navigate = useNavigate()
 useEffect(() => {
