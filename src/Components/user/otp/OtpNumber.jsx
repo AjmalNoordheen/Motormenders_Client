@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
 import OtpInput from 'otp-input-react'
-// import { CgSpinner } from 'react-icons/cg'
 import { BsFillShieldLockFill } from 'react-icons/bs'
 import {RecaptchaVerifier, signInWithPhoneNumber } from "firebase/auth";
 import { auth } from '../../../Firebase/Firebases.config'
