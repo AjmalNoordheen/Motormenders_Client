@@ -36,7 +36,7 @@ function OtpLogin() {
         return
       } 
        userAxios.post('/otpLogin', { newPhone }).then((res) => {
-        if (res.status == 200) {
+        if (res.data.message == 'success') {
           setData(res.data.data)
           onCaptchaVerify()
           const appVerifier = window.recaptchaVerifier
@@ -54,7 +54,7 @@ function OtpLogin() {
               }
             });
         }else{
-          toast.error("User not found")
+          toast.error(res.data.errMsg)
         }
       }).catch((err)=>{
         console.log(err)
