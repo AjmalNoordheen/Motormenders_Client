@@ -35,7 +35,7 @@ function ProOtp() {
           setData(res.data.data)
           onCaptchaVerify()
           const appVerifier = window.recaptchaVerifier
-          const phoneNo = '+91' + phone
+          const phoneNo = '+91' + newPhone
           signInWithPhoneNumber(auth, phoneNo, appVerifier)
             .then((confirmationResult) => {
               window.confirmationResult = confirmationResult;
