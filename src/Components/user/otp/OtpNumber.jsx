@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import OtpInput from 'otp-input-react'
-import { CgSpinner } from 'react-icons/cg'
+// import { CgSpinner } from 'react-icons/cg'
 import { BsFillShieldLockFill } from 'react-icons/bs'
 import { Toaster, toast } from 'react-hot-toast'
 import {RecaptchaVerifier, signInWithPhoneNumber } from "firebase/auth";
@@ -30,7 +30,12 @@ function OtpLogin() {
     //   console.log('llllppppl');
     //   toast.error('Enter valid mobile number')
     // } else {
-       userAxios.post('/otpLogin', { phone }).then((res) => {
+      let newPhone = phone.trim()
+      if (newPhone.length!==10) {  
+        toast.error('Enter a valid number')
+        return
+      } 
+       userAxios.post('/otpLogin', { newPhone }).then((res) => {
         if (res.status == 200) {
           setData(res.data.data)
           onCaptchaVerify()
@@ -38,7 +43,6 @@ function OtpLogin() {
           const phoneNo = '+91' + phone
           signInWithPhoneNumber(auth, phoneNo, appVerifier)
             .then((confirmationResult) => {
-              console.log('asdfsdfsdfsdf');
               window.confirmationResult = confirmationResult;
               setShowOTP(true)
               toast.success('OTP send')
@@ -52,8 +56,9 @@ function OtpLogin() {
         }else{
           toast.error("User not found")
         }
+      }).catch((err)=>{
+        console.log(err)
       })
-    // }
   }
 
   function onCaptchaVerify() {
