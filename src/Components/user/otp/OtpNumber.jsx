@@ -59,7 +59,7 @@ function OtpLogin() {
   function onCaptchaVerify() {
 
     if (!window.recaptchaVerifier) {
-      window.recaptchaVerifier = new  RecaptchaVerifier('recaptcha-container', {
+      window.recaptchaVerifier = new RecaptchaVerifier('recaptcha-container', {
         size: 'invisible',
         callback: (response) => {
           checkMob()
