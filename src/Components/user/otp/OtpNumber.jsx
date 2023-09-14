@@ -55,7 +55,7 @@ function OtpLogin() {
       })
     // }
   }
-  auth().settings?.isAppVerificationDisabledForTesting = true
+
   function onCaptchaVerify() {
 
     if (!window.recaptchaVerifier) {
