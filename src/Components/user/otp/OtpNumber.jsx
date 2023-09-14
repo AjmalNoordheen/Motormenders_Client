@@ -30,7 +30,7 @@ function OtpLogin() {
         return
       } else{
         userAxios.post('/otpLogin', { newPhone }).then((res) => {
-          if (res.data.message == 'success') {
+          if (res.status == 200) {
             setData(res.data.data)
             onCaptchaVerify()
             const appVerifier = window.recaptchaVerifier
@@ -41,21 +41,18 @@ function OtpLogin() {
                 setShowOTP(true)
                 toast.success('OTP send')
               }).catch((error) => {
-                console.log(error);
                 if (error?.response?.data?.errMsg) {
                   toast.error(error?.response?.data?.errMsg)
                   console.log(error);
                 }
               });
           }else{
-            toast.error(res.data.errMsg)
+            toast.error("User not found")
           }
         }).catch((err)=>{
-          console.log(err)
-          toast.error(err)
+          toast.error('User not Found')
         }) 
            }
-     
   }
 
   function onCaptchaVerify() {
