@@ -115,7 +115,7 @@ function OtpLogin() {
   }, [seconds]);
 
   return (
-    <div style={{ 'height': '100vh' }} className='bg-blue-400 flex justify-center items-center'>
+    <div style={{ 'height': '100vh' }} className='bg-blue-300 flex justify-center items-center'>
       <div id='recaptcha-container'></div>
       <div className=' bg-gray-900 p-5 rounded'>
         <Toaster toastOptions={3000} /><div className='bg-white text-emarald-500 w-fit mx-auto p-4 rounded-full'>
