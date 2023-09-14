@@ -52,7 +52,7 @@ function OtpLogin() {
           }
         }).catch((err)=>{
           console.log(err)
-          toast.error(errMsg)
+          toast.error(err)
         }) 
            }
      
