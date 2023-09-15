@@ -1,8 +1,8 @@
 import React from 'react'
 
-function Loading() {
+function Loader() {
   return (
 <span class="loader"></span> )
 }
 
-export default Loading
+export default Loader

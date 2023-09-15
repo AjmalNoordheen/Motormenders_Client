@@ -7,7 +7,7 @@ import ProfessionalAxios from '../../../Axios/proAxios'
 import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import Chats from "../../ReuseItems/Chat/ChatArea";
-import Loading from "../../Loader/Loading";
+import Loader from "../../Loader/Loader";
 
 
 function ProfessionalList() {
@@ -102,7 +102,7 @@ const filteredPros = pros.filter((pro) => {
       <div className="w-full bg-[#1e51db] ">
     <NavBar data={1}/>
     </div>
-    {suspence?<Loading/>:(<div className="w-full h-full  bg-slate-200 ">
+    {suspence?<Loader/>:(<div className="w-full h-full  bg-slate-200 ">
         <div className=" sm:flex  justify-center">
           <div className="sm:flex sm:relative top-[4.5rem] left-14">
             <p className="text-black font-gravitas-one text-xl pt-2 sm:pt-0  text-center  font-semibold sm:text-3xl">
