@@ -9,6 +9,7 @@ import ViewMap from "../../ReuseItems/ViewMap";
 import { ClientLogout } from "../../../Redux/userState";
 import ShowReviews from "../../ReuseItems/ShowReviews";
 import ProGallery from "./ProGallery";
+import Loader from "../../Loader/Loader";
 
 
 function ProDetailPage({email,id}) {
@@ -31,9 +32,12 @@ function ProDetailPage({email,id}) {
   const [totalRating,setTotalRating] = useState('')
   
   const [showGallery,SetShowGallery] = useState(false)
+  const [suspence,setSuspence] = useState(true)
+
 
 
   useEffect(()=>{
+    setSuspence(true)
      userAxios.get(`/proSingleDetails?proEmail=${email}&email=${userEmail}`).then((res)=>{
       if(res.data.message=='blocked'){
         toast.error('Account is blocked ')
@@ -48,6 +52,8 @@ function ProDetailPage({email,id}) {
         }
     }).catch((err)=>{
       console.log(err);
+    }).finally(()=>{
+      setSuspence(false)
     })
   },[])
   
@@ -159,7 +165,10 @@ function ProDetailPage({email,id}) {
   }, []);
 
   return (
-    <div className="w-full min-h-screen p-4 md:p-10 flex justify-center items-center bg-gray-100">
+   <>
+   {suspence?<div className="h-screen w-screen flex justify-center items-center">
+    <Loader/>
+   </div>:(<div className="w-full min-h-screen p-4 md:p-10 flex justify-center items-center bg-gray-100">
       <div className="w-full min-h-screen max-w-screen-lg p-6 md:p-10 mx-auto relative rounded bg-white shadow-md">
         <p className={prof.status=='Active'?'text-green-300 font-semibold text-end':'text-red-600 font-semibold text-end'}>{prof?prof.status=='Active'?'Available':'On Work':""}</p>
        {showGallery?<ProGallery fun={SetShowGallery} proId={id} />:(<>
@@ -308,7 +317,8 @@ function ProDetailPage({email,id}) {
       </div>
        </>)}
       </div>
-    </div>
+    </div>)}
+   </>
   );
 }
 

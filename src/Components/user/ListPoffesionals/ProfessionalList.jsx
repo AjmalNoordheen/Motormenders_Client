@@ -11,6 +11,7 @@ import Loader from "../../Loader/Loader";
 
 
 function ProfessionalList() {
+  const [isLoading, setIsLoading] = useState(true); // Track loading state
   const [pros,SetPros] = useState([])
   const [types,SetTypes] = useState([])
   const [load,setLoad] = useState(1)
@@ -60,6 +61,8 @@ function ProfessionalList() {
           }
       } catch (error) {
         console.error('An error occurred:', error);
+      }finally{
+        setIsLoading(false);
       }
     }
   
@@ -102,7 +105,9 @@ const filteredPros = pros.filter((pro) => {
       <div className="w-full bg-[#1e51db] ">
     <NavBar data={1}/>
     </div>
-    {suspence?<Loader/>:(<div className="w-full h-full  bg-slate-200 ">
+    {suspence?<div className="flex w-screen h-screen justify-center items-center">
+      <Loader/>
+    </div>:(<div className="w-full h-full  bg-slate-200 ">
         <div className=" sm:flex  justify-center">
           <div className="sm:flex sm:relative top-[4.5rem] left-14">
             <p className="text-black font-gravitas-one text-xl pt-2 sm:pt-0  text-center  font-semibold sm:text-3xl">
