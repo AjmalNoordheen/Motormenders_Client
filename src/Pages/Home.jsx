@@ -10,7 +10,7 @@ function Home() {
        <Navbar/>
        </div>
         <UserHome/>
-        <Footer/>
+        {/* <Footer/> */}
     </>
   )
 }
