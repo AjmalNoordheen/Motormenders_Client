@@ -1,0 +1,52 @@
+/* Card.css */
+.card {
+  position: relative;
+  background-color: rgb(255, 255, 255);
+  padding: 1.5rem;
+  border-radius: 1rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid #ccc; /* Added border for illustration */
+}
+
+.card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 8px rgba(5, 133, 218, 0.802);
+}
+
+.card .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 1rem;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.card:hover .overlay {
+  opacity: 1;
+}
+
+.card .overlay-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: #fff;
+}
+
+.card .overlay-content h2 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  font-weight: bold; /* Added font-weight for emphasis */
+}
+
+.card .overlay-content p {
+  font-size: 1rem;
+  font-style: italic; /* Added italic style for description */
+  color: #ccc; /* Changed text color for description */
+}

@@ -5,6 +5,7 @@ import DeleteAccountModal from "../../../Components/ReuseItems/Modal";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import Review from "../../ReuseItems/Review";
+import Loader from "../../Loader/Loader";
 
 
 function Bookings() {
@@ -15,6 +16,8 @@ function Bookings() {
   const [complete, setCompleted] = useState(true);
   const [cancel, setCancelled] = useState(1);
   const [color, setColor] = useState(0);
+  const [suspense, setSuspense] = useState(true);
+
   
   const [review, setReview] = useState(false);
   const [selectedProId, setSelectedProId] = useState('');
@@ -37,6 +40,7 @@ function Bookings() {
       if (res.status === 200) {
         setBooking(res.data.bookingDetails);
         setPending(false)  
+        setSuspense(false)
        
          }
     });
@@ -61,6 +65,8 @@ function Bookings() {
       if (res.status === 200) {
         setBooking(res.data.bookingDetails);
           setCompleted(false)
+          setSuspense(false)
+
          }
       } catch (error) {
         console.log(error);elled
@@ -82,8 +88,9 @@ function Bookings() {
         return
       } 
       if (res.status === 200) {
+        
         setBooking(res.data.bookingDetails);
-        // setCancelled(true)
+       setSuspense(false)
          }
       } catch (error) {
         console.log(error);
@@ -99,7 +106,9 @@ function Bookings() {
 
   return (
     <>
-   
+   {suspense?<div className="flex w-screen h-screen justify-center items-center">
+              <Loader />
+            </div>:
       <div className="flex flex-col min-h-screen h-full bg-slate-200 pb-4 pt-3 sm:overflow-y-scroll">
        <div className="sm:w-1/3 w-full">
        <h1 className="text-2xl font-bold text-center mt-1">
@@ -195,6 +204,7 @@ function Bookings() {
           </div>
         </div>
       </div>
+  }
     </>
   );
 }

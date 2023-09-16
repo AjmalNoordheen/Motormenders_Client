@@ -95,100 +95,75 @@ function UserEdit({ setShow}) {
   }
   return (
     <>
-<div className="h-screen  w-full flex justify-center bg-slate-300">
-        <div className="mt-5 mb-5 relative flex-col justify-center border-b-[3rem] border-blue-700  w-11/12 rounded-lg lg:w-4/5 md:w-5/6 sm:w-11/12 bg-slate-100">
-          <div  className="w-full rounded-t-lg  md:h-1/3 bg-gradient-to-r from-blue-700 to-blue-600">
-           <NavBar data={1} />
+ <div className="min-h-screen w-full bg-slate-300 flex justify-center">
+        <div className="mt-5 mb-5 w-full max-w-4xl bg-slate-100 rounded-lg overflow-hidden">
+          <div className="w-full bg-gradient-to-r from-blue-700 to-blue-600">
+            <NavBar data={1} />
           </div>
-          <div className="w-full sm:w-10/12 md:w-9/12   sm:flex lg:w-8/12 xl:w-9/12
-           bg-white overflow-scroll h-5/5 md:h-3/4 rounded-lg absolute sm:bottom-8 md:left-[13%] transform-translate-x-1/2">
-            <div className="md:w-2/4 sm:w-2/6  md:h-full flex justify-center     bg-white rounded-lg">
-              <div className="flex-col  sm:p-5 pt-2 sm:pt-0  lg:p-12 m-auto">
-                <img
-                 src={file instanceof File ? URL.createObjectURL(file) :user.image? user.image: "/profileimage.png"}
-                 onClick={()=>img.current.click()}
-                  alt="Profile"
-                  className="md:h-28 md:w-28  h-16 w-16 sm:h-24 sm:w-24 rounded-full m-auto"
+          <div className="w-full p-4 md:p-8">
+            <div className="flex flex-col justify-center items-center">
+              <div className="md:w-1/3 text-center mb-4 md:mb-0">
+                <div className="relative inline-block">
+                  <img
+                    src={file instanceof File ? URL.createObjectURL(file) : user.image ? user.image : "/profileimage.png"}
+                    onClick={() => img.current.click()}
+                    alt="Profile"
+                    className="w-24 h-24 md:w-32 md:h-32 rounded-full cursor-pointer"
                   />
-                  <input type="file" className=" mt-2 ml-12 text-xs" accept="image/*" hidden ref={img} name="file" onChange={(e)=>setFile(e.target.files[0])}/>
-
-                <h1 className="sm:ml-16 md:my-3 ml-16 mt-4 sm:mt-0  font-jockey-one sm:text-sm text-xs md:text-base font-bold">
-                  {user?user.name:''}
-                </h1>
-                <h3 className="md:mx-3 mx-1 text-slate-600 font-jockey-one font-normal text-xs">
-                 {user?user.email:''}
-                </h3>
-              </div>
-            </div>
-            <div className="w-full h-full rounded-md  bg-white">
-              <div className="flex items-center   justify-center">
-                <div className="p-8 sm:mt-10 lg:mt-2 ">
-                  <form action=""  onSubmit={EditDetails} className="">
-                    <div className="grid grid-cols-1 md:mt-10 gap-y-3 md:grid-cols-2 ">
-                      <div className=" md:text-start m-auto">
-                        <label htmlFor="name" className="block text-xs sm:text-sm md:text-base sm:font-semibold">
-                          Name :
-                        </label>
-                      </div>
-                      <div>
-                      <input
-                  defaultValue={user?user.name:''}
-                  type="text"
-                  min={1}
-                  ref={nameRef}
-                  name="username"
-                  required
-                          className="w-full px-10 md:w-[10rem] lg:px-2 sm:px-8 text-base py-1 sm:py-1 rounded-lg border"
-                        />
-                      </div>
-
-                      <div className="md:text-start m-auto">
-                        <label htmlFor="name" className="block text-xs sm:text-sm md:text-base font-semibold">
-                          Mobile :
-                        </label>
-                      </div>
-                      <div>
-                      <input
-                  defaultValue={user?user.phone:''}
-                  type="number"
-                  placeholder=""
-                  min={1}
-                  
-                  ref={phoneRef}
-                  required
-                          className="w-full  md:w-[10rem] px-10 lg:px-2 sm:px-8 py-1 rounded-lg border"
-                        />
-                      </div>
-                      <div className="md:text-start m-auto">
-                        <label htmlFor="name" className="block text-xs sm:text-sm md:text-base font-semibold">
-                          Location :
-                        </label>
-                      </div>
-                      <div>
-                      <input
-                  defaultValue={user?user.location:''}
-                  type="text"
-                  placeholder=""
-                  min={1}
-                  ref={locationRef}
-                  required
-                          className=" px-10 lg:px-2 md:w-[10rem] sm:px-8 py-1 rounded-lg border"
-                        />
-                      </div>
-                     {loader? <button type="submit" className="bg-gradient-to-r w-[8rem] from-blue-700 to-blue-600 mt-3 ml-auto py-1 px-3 rounded text-white">
-                     <i class="fa-solid fa-circle-notch text-white animate-spin"></i>
-                      </button>:<button type="submit" className="bg-gradient-to-r w-[8rem] from-blue-700 to-blue-600 mt-3 ml-auto py-1 px-3 rounded text-white">
-                        Submit
-                      </button>}
-                      
-                     
-                    
-                    </div>
-                  </form>
+                  <input type="file" className="hidden" accept="image/*" ref={img} name="file" onChange={(e) => setFile(e.target.files[0])} />
                 </div>
+                <h1 className="mt-2 text-xl font-bold">{user ? user.name : ''}</h1>
+                <h3 className="text-gray-500 text-sm">{user ? user.email : ''}</h3>
               </div>
+              <div className="md:w-2/3">
+                <form onSubmit={EditDetails} className="space-y-4">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                      <label htmlFor="name" className="block text-sm font-semibold">Name:</label>
+                      <input
+                        defaultValue={user ? user.name : ''}
+                        type="text"
+                        ref={nameRef}
+                        name="username"
+                        required
+                        className="w-full px-4 py-2 rounded-lg border"
+                      />
+                    </div>
+                    <div>
+                      <label htmlFor="phone" className="block text-sm font-semibold">Mobile:</label>
+                      <input
+                        defaultValue={user ? user.phone : ''}
+                        type="number"
+                        placeholder=""
+                        ref={phoneRef}
+                        required
+                        className="w-full px-4 py-2 rounded-lg border"
+                      />
+                    </div>
+                    <div>
+                      <label htmlFor="location" className="block text-sm font-semibold">Location:</label>
+                      <input
+                        defaultValue={user ? user.location : ''}
+                        type="text"
+                        ref={locationRef}
+                        required
+                        className="w-full px-4 py-2 rounded-lg border"
+                      />
+                    </div>
+                  </div>
+                  {loader ? (
+                    <button type="submit" className="w-full bg-gradient-to-r from-blue-700 to-blue-600 py-2 px-4 rounded text-white">
+                      <i className="fa-solid fa-circle-notch text-white animate-spin"></i>
+                    </button>
+                  ) : (
+                    <button type="submit" className="w-full bg-gradient-to-r from-blue-700 to-blue-600 py-2 px-4 rounded text-white">
+                      Submit
+                    </button>
+                  )}
+                </form>
+              </div>
+                  <span className=" bg-gradient-to-r mt-2 cursor-pointer  from-blue-700 to-blue-600 py-2  px-4 rounded text-white" onClick={() => setShow('hide')}>Cancel</span>
             </div>
-                  <span className="p-2 text-black cursor-pointer hover:text-red-700" onClick={()=>{setShow('hide')}}>Cancel</span>
           </div>
         </div>
       </div>

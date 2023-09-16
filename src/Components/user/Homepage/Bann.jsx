@@ -6,7 +6,8 @@ function Bann() {
     <>
     
     <div
-       className='sm-h-[11rem] lg:mx-4 text-center lg:my-1 mt-4 md:mt-0 col-span-12 sm:col-span-6  md:h-[18rem] sm:w-[18rem] md:w-auto lg:h-[19rem] border-b-[5px] border-blue-600 xl:h-[19rem]  rounded-b  rounded-md text-white '> 
+       className='sm-h-[11rem] lg:mx-4 text-center lg:my-1 mt-4 md:mt-0 col-span-12 sm:col-span-6  md:h-[18rem] sm:w-[18rem] md:w-auto lg:h-[19rem] 
+       border-b-[5px] border-blue-600 xl:h-[19rem]  rounded-b  rounded-md text-white '> 
        <div className=' rounded-t-md bg-blue-200 h-full pb-3 md:pb-0 w-full shadow-lg border  flex flex-col items-center '>
           <div className='flex justify-between w-full '>
             <h1 className='m-2 font-semibold text-red-600'>Connect to</h1>
@@ -21,7 +22,7 @@ function Bann() {
             <h1 className='text-xl text-black md:text-3xl font-bold'>
               WorkShop
             </h1>
-            <img src="/hammer.png" loading='lazy' className='h-[3rem] w-[4rem] mt-1' alt="" />
+            <img src="/hammer.png" loading='lazy' className='h-[3rem]  w-[4rem] mt-1' alt="" />
           </div>
           <p className='text-xs sm:text-sm  font-Shrikand font-semibold text-slate-800  mt-[4%]'>Connect and Book to Your Nearest Work-Shop.Don't
             Loose Your Time Searching For a the Services.</p>
@@ -92,7 +93,7 @@ function Bann() {
                 <h1 className='text-xl text-black md:text-3xl w-[60%] font-bold'>
                   Freelance Mechanic
                 </h1>
-                <img src="/hand.png" loading='lazy' className='h-[4rem] w-[3rem]' alt="" />
+                <img src="/hand.png" loading='lazy' className='h-[4rem]  p-[-2rem] w-[3rem]' alt="" />
               </div>
             </div>
             <Link to={'/proffesional/login'}>
