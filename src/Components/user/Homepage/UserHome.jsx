@@ -14,6 +14,8 @@ function UserHome() {
   const token = useSelector((state) => state.Client.Token);
 
   useEffect(() => {
+    setIsLoading(false);
+
       if (token) {
       userAxios
         .get(`/getDetails`)
@@ -34,7 +36,7 @@ function UserHome() {
 
   const steps = [
     {
-      icon: '/pic.png',
+      icon: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRgY2WJcq5Kc6dBwxsOG1d0ThNAuBifIMt7rbSMEGCaDp7TdA2_Hgw5cXLQT9cCnirO4X4&usqp=CAU',
       text: 'Register',
     },
     {
@@ -42,15 +44,15 @@ function UserHome() {
       text: 'Search location',
     },
     {
-      icon: '/mec.png',
+      icon: 'https://cdn-icons-png.flaticon.com/512/6833/6833589.png',
       text: 'Select provider',
     },
     {
-      icon: '/book.png',
+      icon: 'https://cdn-icons-png.flaticon.com/512/4473/4473658.png',
       text: 'Book Appointment',
     },
     {
-      icon: '/ser.png',
+      icon: 'https://www.freeiconspng.com/thumbs/services-icon-png/customer-support-icon-png-28.png',
       text: 'Avail the Service',
     },
   ];
@@ -72,7 +74,7 @@ function UserHome() {
  <div className='mt-5 sm:mt-0 bg-slate-100 sm:bg-white pt-3 md:pt-0'>
  <Card/>
  </div>
-<div  className='overflow-hidden md:gap-5 bg-slate-100 w-full md:grid grid-cols-12 border-t'>
+<div  className='overflow-hidden md:gap-5 bg-white w-full md:grid grid-cols-12'>
     <div className='mt-2 sm:mt-0 md:h-[23rem] justify-center items-center w-full  flex flex-col col-span-7 md:col-span-6'>
         <h1 className='text-black  text-2xl md:text-5xl md:text-center  font-bold '>Convenient Services</h1>
         <p className='text-black lg:mt-4 text-xs md:text-sm font-semibold  sm:pb-4 md:pb-8 text-center '>
@@ -82,9 +84,9 @@ function UserHome() {
 </div>
 
 
-<div className="bg-slate-100 py-12">
-  <div className="container mx-auto bg-slate-100 rounded-lg  ">
-    <h1 className="text-3xl font-semibold mb-8 text-center">How It Works</h1>
+<div className="bg-white py-12">
+  <div className="container mx-auto bg-slate-100 rounded-lg p-4 ">
+    <h1 className="text-2xl font-semibold mb-8 text-center">How It Works</h1>
     <div className="grid grid-cols-3 md:grid-cols-3 lg:grid-cols-5 gap-6 justify-center items-center">
       {steps.map((step, index) => (
         <div className="flex flex-col col-span-1 items-center text-center relative" key={index}>

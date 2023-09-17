@@ -15,6 +15,7 @@ import UsersBooking from '../Pages/User/UsersBooking'
 import { useSelector } from 'react-redux'
 import Errorpage from '../Components/ReuseItems/Errorpage'
 import UserWallet from '../Pages/User/UserWallet'
+import Chats from '../Components/ReuseItems/Chat/ChatArea'
 
 
 function UserRoute() {
@@ -35,6 +36,7 @@ function UserRoute() {
      <Route path='/razorpayPage' element={token?<RazorPay/>:<Navigate to={'/login'}/>}/>
      <Route path='/successpage' element={token?<SuccessPage/>:<Navigate to={'/login'}/>}/>
      <Route path='/bookings' element={token?<UsersBooking/>:<Navigate to={'/login'}/>}/>
+     <Route path='/userchat'  element={token?<Chats/>:<Navigate to={'/login'}/>}/>
      <Route path="/wallet" element={<UserWallet/>} />
       <Route path='/*' element={<Errorpage/>}/>
 

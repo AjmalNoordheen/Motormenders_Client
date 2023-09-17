@@ -58,115 +58,106 @@ function ProProfile() {
   console.log(status)
   return (
     <>
-     <div  className="min-h-screen  bg-gray-100">
-      <div className="p-4 md:p-10 flex justify-center items-center">
-        <div className="w-full max-w-screen-lg p-6 md:p-10 mx-auto relative rounded bg-white shadow-md">
-       <div className="w-full text-end relative">
-        {modal=='show'?<button onClick={()=>setModal('hide')} className="px-4 rounded text-center
-         text-white mb-1 bg-purple-700">Cancel</button>:<button onClick={()=>setModal('show')} className="px-4 rounded 
-         text-center text-white mb-1 bg-purple-700">Edit</button>
-        }
-       </div>
-          <div className="border w-11/12 left-11 absolute top-15 border-gray-300"></div>
-          <div className="flex flex-col md:flex-row md:gap-5 md:pt-10 relative">
-          <div className="md:relative">
+       <div className="bg-gray-100 min-h-screen font-sans">
+      <div className="max-w-screen-lg mx-auto p-6 md:p-10 bg-white shadow-md rounded-lg">
+        <div className="flex justify-end">
+          <button
+            onClick={() => setModal('show')}
+            className="px-4 py-2 mb-2 text-white bg-purple-700 rounded-md hover:bg-purple-800 focus:outline-none"
+          >
+            Edit Profile
+          </button>
+        </div>
+        <div className="border-b border-gray-300 mb-6 pb-6">
+          <div className="md:flex md:items-center md:space-x-6">
             <img
-            
-              src={prof.image?prof.image:'/profileimage.png'}
-              className="w-36 h-36 md:w-44 rounded-full md:h-44 md:left-16"
-              alt=""
-              />
-          </div>
-          <div className="flex flex-col md:flex-row gap-6 md:w-2/3">
-            <div className="md:w-1/2 ">
-              <h1 className="text-2xl md:text-4xl font-josefin-sans font-bold">
-               {prof.name?prof.name:''}
+              src={prof.image ? prof.image : '/profileimage.png'}
+              alt="Profile"
+              className="w-32 h-32 md:w-44 md:h-44 rounded-full"
+            />
+            <div className="mt-4 md:mt-0">
+              <h1 className="text-3xl md:text-4xl font-semibold">
+                {prof.name ? prof.name : ''}
               </h1>
-              <div className="mt-2 md:mt-4 space-y-3">
-                <p className="text-base font-josefin-sans md:text-lg">
-                  Profession: {prof.work?prof.work:''}
-                </p>
-               
-                <div className="flex  items-center">
-                  <p className="text-base font-josefin-sans md:text-lg">
-                    Ranking:
-                  </p>
-                  <div className="ml-2 ">
-                    {/* You can use star icons for rating */}
-                    <span>⭐⭐⭐⭐⭐</span>
-                  </div>
-                </div>
-                {prof.status=="Active"?<button title="Click to change as not Available" onClick={()=>changeAvailability('onwork',prof?._id)} 
-                
-                className="bg-blue-600 px-3 py-1 rounded font-bold text-white ">Not Available</button>:
-                <button title="Click to change as not Available" onClick={()=>changeAvailability('Active',prof?._id)} className="bg-blue-600 px-3 py-1 
-                rounded font-bold text-white ">Available</button>}
-
-
-              </div>
-            </div>
-            <div className="flex flex-col md:w-1/3 mt-12">
-              <div className="flex items-center mb-2 md:mb-4">
-                <img
-                  src="/footer/Cardmap.png"
-                  alt=""
-                  className="w-4 h-4 md:w-5 md:h-5"
-                  />
-                <p className="ml-2 text-base font-josefin-sans md:text-lg">
-                 {prof.location?prof.location:''}
-                </p>
-              </div>
-              <div className="flex gap-2">
-                <img
-                  src="/footer/spanner1.png"
-                  alt=""
-                  className="w-4 h-4 md:w-5 md:h-5"
-                  />
-                 <p className="text-base font-josefin-sans md:text-lg">
-                  Vehicle Type: <br />
-                   <span className="text-sm"> {prof.types?prof.types.map((item)=>item.name).join('  /'):''} </span>
-                </p>
+              <p className="mt-2 text-lg font-medium text-gray-600">
+                Profession: {prof.work ? prof.work : ''}
+              </p>
+              <div className="mt-2">
+                {prof.status === 'Active' ? (
+                  <button
+                    onClick={() => changeAvailability('onwork', prof?._id)}
+                    className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none"
+                  >
+                    Not Available
+                  </button>
+                ) : (
+                  <button
+                    onClick={() => changeAvailability('Active', prof?._id)}
+                    className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none"
+                  >
+                    Available
+                  </button>
+                )}
               </div>
             </div>
           </div>
-                  {modal=='show'?<EditModal fun={setModal}/>:''}                
         </div>
-        
-        <div className="w-11/12 mx-auto h-1 border-t-2 border-gray-300 mt-5" />
-        <div className="flex flex-col mt-6 md:flex-row items-center gap-6 md:justify-center">
-  <div className="pb-5 md:pb-0 md:mb-10 grid gap-2 md:ml-4">
-    <div className="bg-white p-6 w-full md:min-w-[20rem] rounded-lg shadow-lg">
-      <p className="text-xl font-semibold mb-4">Service Details</p>
-      <div className="grid grid-cols-2 gap-4">
-        <div className="flex flex-col">
-          <span className="font-bold">Service Fee:</span>
-          <span className="text-green-500 font-bold">
-            ₹ {prof.fees ? prof.fees : ""}
-          </span>
-        </div>
-        <div className="flex flex-col">
-          <span className="font-bold">Email:</span>
-          <span>{prof.email ? prof.email : ""}</span>
-        </div>
-        <div className="flex flex-col">
-          <span className="font-bold">Address:</span>
-          <span>{prof.address ? prof.address : ""}</span>
-        </div>
-        <div className="flex flex-col">
-          <span className="font-bold">Working Hours:</span>
-          <span>{prof.workingTime ? prof.workingTime : ""}</span>
+        <div className="grid grid-cols-1 overflow-scroll md:grid-cols-2 gap-4">
+          <div className="border p-4 rounded-lg shadow-md">
+            <h2 className="text-xl font-semibold mb-3">Service Details</h2>
+            <div className="grid grid-cols-2 gap-4">
+              <div className="flex flex-col">
+                <span className="font-semibold">Service Fee:</span>
+                <span className="text-green-500 font-semibold">
+                  ₹ {prof.fees ? prof.fees : ''}
+                </span>
+              </div>
+              <div className="flex flex-col">
+                <span className="font-semibold">Email:</span>
+                <span>{prof.email ? prof.email : ''}</span>
+              </div>
+              <div className="flex flex-col">
+                <span className="font-semibold">Address:</span>
+                <span>{prof.address ? prof.address : ''}</span>
+              </div>
+              <div className="flex flex-col">
+                <span className="font-semibold">Working Hours:</span>
+                <span>{prof.workingTime ? prof.workingTime : ''}</span>
+              </div>
+            </div>
+          </div>
+          <div className="border p-4 rounded-lg shadow-md">
+            <h2 className="text-xl font-semibold mb-3">Location & Vehicle Type</h2>
+            <div className="flex items-center">
+              <img
+                src="/footer/Cardmap.png"
+                alt="Location"
+                className="w-6 h-6 mr-2"
+              />
+              <span className="text-lg font-medium">
+                {prof.location ? prof.location : ''}
+              </span>
+            </div>
+            <div className="mt-3 flex">
+              <img
+                src="/footer/spanner1.png"
+                alt="Vehicle Type"
+                className="w-6 h-6 mr-2"
+              />
+              <span className="text-lg font-medium">
+                Vehicle Type: {prof.types ? prof.types.map((item) => item.name).join(' / ') : ''}
+              </span>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
-</div>
-
-          <hr />
-          <h2 className="text-xl font-bold pb-2 text-gray-500 lg:text-2xl">
-          CLUB GALLERY
+      {modal === 'show' ? <EditModal fun={setModal} /> : ''}
+      <hr className="my-8 border-t border-gray-300" />
+      <div className="max-w-screen-lg mx-auto">
+        <h2 className="text-2xl font-semibold mb-4 text-gray-800">
+        GALLERY
         </h2>
-          <ProGallery/>
-        </div>
+        <ProGallery />
       </div>
     </div>
     </>

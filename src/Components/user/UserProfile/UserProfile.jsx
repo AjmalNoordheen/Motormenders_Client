@@ -5,6 +5,7 @@ import UserEdit from "../../ReuseItems/UserEdit";
 import userAxiosInstance from "../../../Axios/userAxios";
 import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import Loader from "../../Loader/Loader";
 
 function UserProfile() {
   const [user, setUser] = useState({});
@@ -13,6 +14,8 @@ function UserProfile() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const userAxios = userAxiosInstance();
+  const [suspense, setSuspense] = useState(true);
+
 
   useEffect(() => {
     userAxios
@@ -28,6 +31,7 @@ function UserProfile() {
         }
         if (res.status === 200) {
           setUser(res.data.user);
+          setSuspense(false)
         } else if (res.data.status === false) {
           dispatch(ClientLogout());
           navigate("/");
@@ -47,6 +51,10 @@ function UserProfile() {
           </div>
           <div className="w-full p-4 md:p-8">
             <div className="flex flex-col justify-center items-center">
+          {suspense?
+          <div className="flex w-screen h-screen justify-center items-center">
+          <Loader/>
+          </div>:(<>
               <div className="md:w-1/3 text-center mb-4 md:mb-0">
                 <div className="relative inline-block">
                   <img
@@ -66,7 +74,7 @@ function UserProfile() {
                         Name:
                       </label>
                       <input
-                        defaultValue={user?.name || ""}
+                        value={user?.name || ""}
                         type="text"
                         className="w-full px-4 py-2 rounded-lg border"
                       />
@@ -76,7 +84,7 @@ function UserProfile() {
                         Email:
                       </label>
                       <input
-                        defaultValue={user?.email || ""}
+                        value={user?.email || ""}
                         type="text"
                         className="w-full px-4 py-2 rounded-lg border"
                       />
@@ -87,7 +95,7 @@ function UserProfile() {
                           Mobile:
                         </label>
                         <input
-                          defaultValue={user?.phone || ""}
+                          value={user?.phone || ""}
                           type="number"
                           placeholder=""
                           className="w-full px-4 py-2 rounded-lg border"
@@ -100,7 +108,7 @@ function UserProfile() {
                           Location:
                         </label>
                         <input
-                          defaultValue={user?.location || ""}
+                          value={user?.location || ""}
                           type="text"
                           className="w-full px-4 py-2 rounded-lg border"
                         />
@@ -112,7 +120,7 @@ function UserProfile() {
                           Status:
                         </label>
                         <input
-                          defaultValue={user?.status || ""}
+                          value={user?.status || ""}
                           type="text"
                           className="w-full px-4 py-2 rounded-lg border"
                         />
@@ -130,6 +138,7 @@ function UserProfile() {
                   </div>
                 </form>
               </div>
+          </>)}
             </div>
           </div>
         </div>

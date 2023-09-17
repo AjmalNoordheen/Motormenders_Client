@@ -1,10 +1,11 @@
-import { Fragment, useEffect } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { useDispatch, useSelector } from "react-redux";
 import { ClientLogout } from "../../../Redux/userState";
 import { Link, useNavigate } from "react-router-dom";
 import AxiosInstance from '../../../Axios/userAxios'
+
 
 
 function classNames(...classes) {
@@ -18,13 +19,20 @@ export default function Example({data,setHeight}) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const userAxios = AxiosInstance()
+  const [state,setState] = useState('')
   const navigation = [
-    { name: "Home", href: "/", current: false },
-    { name: "Freelancers", href: "/prolists", current: false },
-    { name: "WorkShop", href: `/prolists?type=${'workshop'}`, current: false },
-    { name: "Bookings",href:userToken? "/bookings":'', current: false },
-    { name: "Wallet", href:userToken? '/wallet':'', current: false },
+    { name: "Home", href: "/", current:  state=='Home' ? true:false },
+    { name: "Freelancers", href: "/prolists", current: state=='Freelancers' ? true:false },
+    { name: "WorkShop", href: `/prolists?type=${'workshop'}`, current:  state=='WorkShop' ? true:false },
+    { name: "Bookings",href:userToken? "/bookings":'', current:  state=='Bookings' ? true:false },
+    { name: "Chats", href:userToken?'/userchat':'', current:  state=='Chats' ? true:false },
   ];
+  console.log(state)
+
+  const navigateNavbar = (name,href)=>{
+    setState(name)
+    navigate(href)
+  }
   useEffect(()=>{
     userAxios.get(`/blockAuth?email=${email}&nav=${true}`).then((res)=>{
       if(res){
@@ -40,7 +48,7 @@ export default function Example({data,setHeight}) {
         return
       }
     })
-  },[])
+  },[state])
   const SignOut = () => {
     dispatch(ClientLogout());
     navigate("/")
@@ -76,7 +84,7 @@ export default function Example({data,setHeight}) {
                     {navigation.map((item) => (
                       <a
                         key={item.name}
-                        onClick={()=>navigate(item.href)}
+                        onClick={()=>navigateNavbar(item.name,item.href)}
                         className={classNames(
                           item.current
                             ? "bg-gray-900 text-white"
@@ -138,16 +146,16 @@ export default function Example({data,setHeight}) {
                             </Link>
                           )}
                         </Menu.Item>
-                        <Menu.Item>
+                  <Menu.Item>
                           {({ active }) => (
                             <Link
-                              href="#"
+                            to={'/wallet'}                              
                               className={classNames(
                                 active ? "bg-gray-100" : "",
                                 "block px-4 py-2 text-sm text-gray-700"
                               )}
                             >
-                              Settings
+                            Wallet
                             </Link>
                           )}
                         </Menu.Item>

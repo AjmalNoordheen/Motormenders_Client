@@ -7,6 +7,7 @@ export default function Card() {
     <div className="flex items-center justify-center">
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4">
         {/* Card 1 */}
+        <Link to={`/prolists?type=${'workshop'}`}>
         <div className="relative card py-6 px-6 rounded-3xl w-64 my-4 shadow-xl">
           <div
             style={{
@@ -72,8 +73,10 @@ export default function Card() {
             </div>
           </div>
         </div>
-
+        </Link>
         {/* Card 2 */}
+
+        <Link to={'/proffesional/signup'}>
         <div className="relative card bg-white py-6 px-6 rounded-3xl w-64 my-4 shadow-xl">
           <div
             style={{
@@ -138,8 +141,10 @@ export default function Card() {
             </div>
           </div>
         </div>
+        </Link>
 
         {/* Card 3 */}
+        <Link to={'/prolists'}>
         <div className="relative card bg-white py-6 px-6 rounded-3xl w-64 my-4 shadow-xl">
           <div
             style={{
@@ -207,8 +212,11 @@ export default function Card() {
             </div>
           </div>
         </div>
+        </Link>
+
 
         {/* Card 4 */}
+        <Link to={'/proffesional/signup'}>
         <div className="relative card bg-white py-6 px-6 rounded-3xl w-64 my-4 shadow-xl">
           <div
             style={{
@@ -276,6 +284,7 @@ export default function Card() {
             </div>
           </div>
         </div>
+        </Link>
       </div>
     </div>
   );

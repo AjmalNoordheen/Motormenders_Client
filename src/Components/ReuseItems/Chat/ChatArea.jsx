@@ -8,10 +8,16 @@ import ChatList from "./ChatList";
 import { useLocation } from "react-router-dom";
 import Navbar from '../../user/Navbar/Navbar'
 
-function Chats({pro,fun}) {
+function Chats() {
   const [socket, setSocket] = useState(null);
-  // const [chat, setChat] = useState('true')
-  
+  const [display, setDisplay] = useState(true)
+
+  const uselocation = useLocation()
+  const queryString = uselocation.search;
+  const searchParams = new URLSearchParams(queryString);
+  const pro = searchParams.get("pro");
+
+
   const proAxios = proInstance();
   const userAxios = userInstance();
   
@@ -20,7 +26,8 @@ function Chats({pro,fun}) {
   const [messages, setMessages] = useState([]);
   const [message, setMessage] = useState('');
   const [timeStamp, setTimeStamp] = useState(Date.now());
-  
+  const [isLoading, setIsLoading] = useState(true); // Track loading state
+
   const [showMes,setShowMes] = useState('')
 
   const messageHolder = useRef(null);
@@ -30,13 +37,15 @@ function Chats({pro,fun}) {
 
   const senderData = useSelector((store) => senderType === 'professional' ?   store.Proffessional.proData : store.Client.userData);
   
-  const Axios = senderType === 'professional'?proAxios:userAxios
+  const Axios = senderType === 'professional'? proAxios:userAxios
 
   useEffect(() => {
       Axios.get(`/listChat?id=${senderData._id}&senderType=${senderType}&proId=${pro}`).then((res) => {
         setChatList(res.data.list);
       });
-    
+    setTimeout(()=>{
+      setIsLoading(false)
+    },1000)
   }, []);
 
   useEffect(() => {
@@ -110,13 +119,23 @@ function Chats({pro,fun}) {
     <div>
       {/* <div className='w-4/12 h-screen flex justify-center items-center bg-black'> */}
           {/* <h1 className="text-xl m-[3%]">Chats</h1> */}
-		 {senderType=='professional'?<NavBar/>:<Navbar/>}
+		 {senderType=='professional'?<NavBar/>:<div className="w-full bg-blue-700"><Navbar/></div>}
       <div className="flex h-screen full antialiased justify-center items-center text-gray-800">
-        <ChatList chatList={chatList} show={showMes} setReceiver={setReceiver} timeStamp={new Date(timeStamp)} type={senderType} />
+        <ChatList isLoading={isLoading} display={display} setDisplay={setDisplay} chatList={chatList} show={showMes} setReceiver={setReceiver} timeStamp={new Date(timeStamp)} type={senderType} />
         {/* </div> */}
-        <div className="sm:flex sm:flex-row h-full w-11/12 overflow-x-hidden">
+        
+        <div className={display?'hidden md:flex sm:flex-row h-full w-11/12 overflow-x-hidden ':"md:flex sm:flex-row h-full w-11/12 overflow-x-hidden"}>
           <div className="flex flex-col flex-auto h-full p-6 ">
             <div className="flex flex-col flex-auto flex-shrink-0 rounded-2xl bg-gray-200 h-full p-4">
+                              <div className="cursor-pointer sm:hidden">
+                              <i
+                        className="fa fa-arrow-left"
+                        onClick={() => {
+                          setDisplay(true)
+                        }}
+                      ></i>
+                              </div>
+
               <div
                 className="flex flex-col h-full overflow-x-auto mb-4"
                 ref={messageHolder}
@@ -193,7 +212,7 @@ function Chats({pro,fun}) {
                 <div />
               </div>
               <div>
-                <div className="flex flex-row items-center h-16 rounded-xl bg-white w-full px-4">
+                {receiver?<div className="flex flex-row items-center h-16 rounded-xl bg-white w-full px-4">
                   <div className="flex-grow ml-4">
                     <div className="relative w-full">
                       <input
@@ -214,7 +233,8 @@ function Chats({pro,fun}) {
                       <span>Send</span>
                     </button>
                   </div>
-                </div>
+                </div> :''}
+            
               </div>
             </div>
           </div>

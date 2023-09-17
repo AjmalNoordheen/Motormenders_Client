@@ -7,7 +7,8 @@ import Swal from "sweetalert2";
 function ProGallery() {
   const proAxios = proAxoisInstance();
   const proData = useSelector((state) => state.Proffessional.proData);
-  const [content, setContent] = useState(null);
+  const [bin, setBin] = useState(false);
+  const [imgId, setImgId] = useState(null);
   const [file, setFile] = useState("");
   const [state, setState] = useState(0);
   const [loading, setLoading] = useState(true);
@@ -15,7 +16,7 @@ function ProGallery() {
   const img = useRef();
 
   useEffect(() => {
-    setLoading(true);
+    setLoading(true); 
 
     try {
       const getGallery = async () => {
@@ -101,6 +102,19 @@ function ProGallery() {
       console.log(error);
     }
   };
+
+  const showBin = (id)=>{
+    try {
+      setImgId(id)
+      if(bin){
+        setBin(false)
+      }else{
+        setBin(true)
+      }
+    } catch (error) {
+      
+    }
+  }
   
   return (
     <>
@@ -116,17 +130,20 @@ function ProGallery() {
               className="group  flex h-48 items-end overflow-hidden rounded-lg bg-white shadow-lg md:h-72 object-contain"
             >
            <div className="w-full h-full flex items-center justify-center">
-           <img
-                src={
-                  file instanceof File
-                    ? URL.createObjectURL(file)
-                    : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSbQ8ld9CFGwZyOnXEchyjggPCU4G6gDWbRL4A-ELNf3t4YD3jQAeDZb0InTyUmm7E00H4&usqp=CAU"
-                }
-                loading="lazy"
-                onClick={() => img.current.click()}
-                alt="Photo by Minh Pham"
-                className=" inset-0 h-[60%] w-fit object-cover  object-center transition duration-200 group-hover:scale-110"
-              />
+            { file instanceof File  ?
+             <img
+             src={
+               
+                  URL.createObjectURL(file)
+             }
+             loading="lazy"
+             onClick={() => img.current.click()}
+             alt="Photo by Minh Pham"
+             className=" inset-0 h-[60%]   w-fit object-cover  object-center transition duration-200 group-hover:scale-110"
+           /> 
+            : <i  onClick={() => img.current.click()}  className="fas  cursor-pointer fa-image text-6xl text-gray-300"></i>}
+          
+
            </div>
               <input type="file" name="file" hidden ref={img} />
               <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-gray- via-transparent to-transparent opacity-50"></div>
@@ -147,23 +164,24 @@ function ProGallery() {
             gallery?.map((data) => (
               <div
                 key={data._id}
-                className=" bg-opacity-60 border-2 col-span-4 md:col-span-3 w-fit h-fit justify-center m-1 flex flex-col items-center md:w-fit  p-1 md:gap-1 rounded-lg "
+                className=" bg-opacity-60 border-2 col-span-4 relative cursor-pointer    md:col-span-3 w-fit h-fit justify-center m-1 flex flex-col items-center md:w-fit  p-1 md:gap-1 rounded-lg "
               >
                 <img
+                onClick={()=>showBin(data._id)}
                   src={data?.image} // Use the actual image URL from the data
                   loading="lazy"
                   alt="Photo by Minh Pham"
-                  className="sm:w-32 object-contain sm:h-24 w-16 h-16"
+                  className="sm:w-32 object-contain sm:h-24 w-25 h-20"
                 />
               
-                <button
+               {bin && data._id == imgId ?<button
                   key={data?._id}
                   onClick={() => removeGallery(data._id)}
                 type="button"
-                  className="w-1/2  bg-slate-700 rounded-full  text-red-600 hover:text-green-500"
+                  className=" absolute top-1 right-1 px-2 py-1 bg-white rounded-full border-black hover:border-green-600 hover:bg-black  text-green-500 border-2"
                 >
                   <i class="fa-solid fa-trash"></i>
-                </button>
+                </button>:''}
               </div>
             ))
           ) : (

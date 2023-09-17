@@ -5,10 +5,12 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import NavBar from '../user/Navbar/Navbar'
 import { useNavigate } from "react-router-dom";
+import Loader from "../Loader/Loader";
 function UserEdit({ setShow}) {
   const [user, setUser] = useState('');
   const [file, setFile] = useState('');
   const [loader, setloader] = useState(false);
+  const [suspense, setSuspense] = useState(true);
 
   console.log(file);
   const nameRef = useRef(null);
@@ -33,12 +35,13 @@ function UserEdit({ setShow}) {
         }
         if (res.status == 200) {
           setUser(res.data.user);
+          setSuspense(false)
         }
       })
       .catch((error) => {
         console.log(error);
       });
-  }, [token]);
+  }, [token,suspense]);
 
   const showToastMessage = () => {
     toast.success("Success!", {
@@ -85,6 +88,7 @@ function UserEdit({ setShow}) {
          if(res.status==200){
            showToastMessage() 
            setShow('hide')
+           setSuspense(false)
          }else{
           showErrorMessage(error)
          }
@@ -102,7 +106,10 @@ function UserEdit({ setShow}) {
           </div>
           <div className="w-full p-4 md:p-8">
             <div className="flex flex-col justify-center items-center">
-              <div className="md:w-1/3 text-center mb-4 md:mb-0">
+            {suspense?<div className="flex w-screen h-screen justify-center items-center">
+              <Loader />
+            </div>:<>
+            <div className="md:w-1/3 text-center mb-4 md:mb-0">
                 <div className="relative inline-block">
                   <img
                     src={file instanceof File ? URL.createObjectURL(file) : user.image ? user.image : "/profileimage.png"}
@@ -116,6 +123,7 @@ function UserEdit({ setShow}) {
                 <h3 className="text-gray-500 text-sm">{user ? user.email : ''}</h3>
               </div>
               <div className="md:w-2/3">
+             
                 <form onSubmit={EditDetails} className="space-y-4">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
@@ -162,7 +170,11 @@ function UserEdit({ setShow}) {
                   )}
                 </form>
               </div>
-                  <span className=" bg-gradient-to-r mt-2 cursor-pointer  from-blue-700 to-blue-600 py-2  px-4 rounded text-white" onClick={() => setShow('hide')}>Cancel</span>
+              <span className=" bg-gradient-to-r mt-2 cursor-pointer  from-blue-700 to-blue-600 py-2  px-4 rounded text-white" onClick={() => setShow('hide')}>Cancel</span>
+
+            </>}
+             
+              
             </div>
           </div>
         </div>

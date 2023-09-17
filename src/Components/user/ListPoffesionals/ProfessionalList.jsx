@@ -47,6 +47,7 @@ function ProfessionalList() {
           setSuspense(false);
           SetPros(res.data.pro);
         } else {
+          setSuspense(false);
           console.log("No Freelancer data available.");
         }
         const response = await AdminAxios.get("/listTypes");
@@ -243,7 +244,8 @@ function ProfessionalList() {
                           </button>
                           {token ? (
                             <button
-                              onClick={() => setShow(items._id)}
+                              onClick={()=>
+                              navigate(`/userchat?pro=${items._id}`)}
                               className="text-white bg-[#552a9e] px-1 sm:p-1.5 rounded hover:bg-[#9661f1] hover:text-black"
                             >
                               <i className="fa-solid fa-message "></i> Chat

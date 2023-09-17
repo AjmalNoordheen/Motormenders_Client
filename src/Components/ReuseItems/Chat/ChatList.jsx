@@ -1,26 +1,41 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
+import Loader from '../../Loader/Loader';
 
-const ChatList = ({chatList, setReceiver,type,timestamp,show}) => {
+const ChatList = ({chatList, setReceiver,type,isLoading,show,setDisplay,display}) => {
+  
   const location = useLocation()
   const senderType = location.pathname.includes('proffesional') ? 'professional' : 'user'
 const senderData = useSelector((store) => senderType === 'professional' ?   store.Proffessional.proData : store.Client.userData);
 
+  const PassID =(id)=>{
+    try {
+      setReceiver(id)
+      setDisplay(false)
+    } catch (error) {
+      
+    }
+  }
   return (
-    <div className="w-5/12 h-[92%] flex justify-center items-center rounded-lg bg-gray-300 ml-2 ">
+    <>
+    
+    <div className={!display?"hidden md:flex w-11/12 md:w-7/12 lg:6/12 xl:w-4/12 h-[92%]  justify-center items-center rounded-lg bg-gray-300 ml-2 ":"w-11/12 md:w-7/12 lg:6/12 xl:w-4/12 h-[92%] flex justify-center items-center rounded-lg bg-gray-300 md:ml-2 "}>
           <div className="h-[90%]  overflow-scroll w-[96%]  bg-gray-200">
 			<p className="m-2 font-bold">Chats</p>
-            { chatList ? (
+      {isLoading?<div className='w-fukk h-full flex justify-center items-center'>
+      <Loader/>
+    </div>:<>
+    { chatList ? (
                 
                 chatList.map((list) => {
                 return (
                     
                   <div
                     onClick={() => {
-                      setReceiver(list._id)
+                     PassID(list._id) 
                     }}
-                    className="m-1 bg-white h-[20%]  flex items-center"
+                    className="m-1 bg-white h-[5rem]  flex items-center"
                   >
                     <img
                       src={type=='professional' ? list?.user?.image : list.professional.image}
@@ -30,11 +45,7 @@ const senderData = useSelector((store) => senderType === 'professional' ?   stor
                     <div className="overflow-hidden ml-3 h-[60%]  w-full">
                       <h1 className="font-bold">{type=='professional' ?list?.user?.name : list.professional.name}</h1>
                      
-                        {/* {list.messages
-                          ? list.messages[list.messages.length - 1]
-                            ? list.messages[list.messages.length - 1].text
-                            : ""
-                          : ""} */}
+                     
                         {show.receiver == list._id ?  <small className="w-[100%]">{show.text}</small>:''}
                      
                     </div>
@@ -62,11 +73,13 @@ const senderData = useSelector((store) => senderType === 'professional' ?   stor
                 <h1>no list</h1>{" "}
               </div>
             )}
+    </>
+    
+    }
+           
           </div>
-          <button className="bg-black px-4 sm:hidden text-white hover:bg-white hover:text-black py-2 rounded-md">
-            Back
-          </button>
         </div>
+        </>
   )
 }
 

@@ -56,6 +56,10 @@ function Register() {
     if (password.length < 4) {
       generateError("Password should be at least 6 characters long");
       return;
+    }if(password != repassword ){
+      generateError("Password dosent Match");
+      return;
+
     }
 
     setSpin(true);
@@ -75,12 +79,15 @@ function Register() {
       .post("/signUp", { name, email, mobile, password, repassword, location })
       .then((res) => {
         if (res.data.status == true) {
+          console.log('success')
           setShowOTP(true)
         } else {
           setSpin(false);
           generateError(res.data.message);
         }
-      });
+      }).catch((err)=>{
+        console.log(err)
+      })
 
       
   };

@@ -67,7 +67,7 @@ function UserLogin() {
               setSpin(false)
              }, 400);
             }
-            else if (res.data.status == false) {
+            else if (res.data.status === false) {
               setTimeout(()=>{
                 setSpin(false)
               },300)
@@ -87,6 +87,7 @@ function UserLogin() {
             }
           })
           .catch((error) => {
+            setSpin(false)
             generateError("An error occurred. Please try again.");
             console.error(error);
           });
@@ -169,7 +170,7 @@ function UserLogin() {
                 type="submit"
                 className="block w-full bg-indigo-600 mt-4 py-2 rounded-2xl text-white font-semibold mb-2"
               >
-                Register
+                Login
               </button>
             )}
            

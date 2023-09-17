@@ -65,49 +65,95 @@ function EditModal({fun}) {
   return (
 
    <>
-   <div className="flex flex-col backdrop-blur-md absolute right-[-6%] sm:right-[-4%] md:right-[-9%] md:top-[5%] lg:right-[-1%] md:flex-row items-center gap-6 md:justify-center">
-            <div className="pb-5 font- md:pb-0 md:mb-10 grid gap-2 md:ml-4">
-              <div className="bg-blue-200 shadow-sm p-4 rounded-lg ">
-               <form action="" >
-               
-                   <img src={
-                    
+       <div className="fixed inset-0 flex items-center justify-center z-50 overflow-hidden">
+  <div className="bg-white w-full md:max-w-md mx-auto rounded-lg shadow-lg overflow-hidden">
+    <div className="p-4">
+      <form action="">
+        <div className="text-center text-xl font-semibold mb-4">
+          Edit Profile
+        </div>
+        <div className="bg-blue-200 shadow-sm p-4 rounded-lg">
+          <div className="text-center">
+            <img
+              src={
                 file instanceof File
                   ? URL.createObjectURL(file)
-                  :proData.image?proData.image: "/profileimage.png"} className='w-[4rem] object-cover rounded-full h-[4rem]' alt="" />
-               
-               <input type="file" name="file" accept='image/*'
-                onChange={(e) => setFile(e.target.files[0])}
-                 className='text-xs cursor-pointer' />
-               <div className="flex justify-between mt-2">
-                  <span className="font-bold">Name:</span>
-                 <input ref={nameRef} className='w-[7rem]' defaultValue={proData.name} type="text" />
-                </div>
-               <div className="flex justify-between mt-2">
-                  <span className="font-bold">Service Fee:</span>
-                 <input ref={feeRef} className='w-[7rem]' defaultValue={proData.fees} type="number" />
-                </div>
-                <div className="flex justify-between mt-2">
-                  <span className="font-bold">Address:</span>
-                  <input ref={addressRef} defaultValue={proData.address} className='w-[7rem] h-10   text-xs' type="text" />
-                </div>
-               
-                <div className="flex justify-between mt-2">
-                  <span className="font-bold">Working Hours:</span>
-                </div>
-                <div className='mt-1 flex gap-1'>
-                    <label htmlFor="">from:</label>
-                    <input ref={startTimeRef} type="time" />
-                    <label htmlFor="">to:</label>
-                    <input ref={endTimeRef} type="time"/>
-                </div>
-                <div className='w-full flex justify-center mt-2'>
-                <button  onClick={updateEditPro} type='submit' className=' bg-purple-700 hover:bg-black mt-2 text-white rounded py-1  px-2'>Submit</button>
-                </div>
-             </form>
-              </div>
+                  : proData.image
+                  ? proData.image
+                  : '/profileimage.png'
+              }
+              className="w-[4rem] object-cover rounded-full h-[4rem] mx-auto"
+              alt=""
+            />
+            <input
+              type="file"
+              name="file"
+              accept="image/*"
+              onChange={(e) => setFile(e.target.files[0])}
+              className="text-xs cursor-pointer mx-auto mt-2"
+            />
+          </div>
+          <div className="mt-4">
+            <div className="mb-2 flex justify-between">
+              <span className="font-bold">Name:</span>
+              <input
+                ref={nameRef}
+                className="w-[7rem] text-sm"
+                defaultValue={proData.name}
+                type="text"
+              />
+            </div>
+            <div className="mb-2 flex justify-between">
+              <span className="font-bold">Service Fee:</span>
+              <input
+                ref={feeRef}
+                className="w-[7rem] text-sm"
+                defaultValue={proData.fees}
+                type="number"
+              />
+            </div>
+            <div className="mb-2 flex justify-between">
+              <span className="font-bold">Address:</span>
+              <input
+                ref={addressRef}
+                defaultValue={proData.address}
+                className="w-[7rem] h-10 text-xs"
+                type="text"
+              />
+            </div>
+            <div className="mb-2 flex justify-between">
+              <span className="font-bold">Working Hours:</span>
+            </div>
+            <div className="flex gap-1">
+              <label htmlFor="">from:</label>
+              <input ref={startTimeRef} type="time" className="text-sm" />
+              <label htmlFor="">to:</label>
+              <input ref={endTimeRef} type="time" className="text-sm" />
             </div>
           </div>
+          <div className="mt-4 flex justify-between">
+            <button
+              onClick={updateEditPro}
+              type="submit"
+              className="bg-purple-700 hover:bg-black text-white rounded py-1 px-2"
+            >
+              Submit
+            </button>
+            <button
+              onClick={() => fun('hide')} // Add this function to hide the modal
+              type="button"
+              className="bg-red-700 hover:bg-red-800 text-white rounded py-1 px-2"
+            >
+              Cancel
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<div className="fixed inset-0 bg-black opacity-50 z-40"></div>
+
    </>
 )}
 

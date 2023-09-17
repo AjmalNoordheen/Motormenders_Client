@@ -107,7 +107,7 @@ function HomePro() {
             <div className="grid grid-cols-12 gap-4">
               {/* Left Sidebar */}
               <div className="col-span-12 lg:col-span-4">
-              <div class=" bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 p-6 lg:h-[47%] rounded-lg shadow-lg">
+              <div class=" bg-gradient-to-r from-blue-400 via-blue-500 to-blue-500 p-6 lg:h-[47%] rounded-lg shadow-lg">
   <h1 class="text-2xl font-semibold text-white mb-4">Wallet Amount</h1>
   <div class="flex items-center justify-center">
     <i class="fas fa-wallet text-4xl text-black mr-2"></i>

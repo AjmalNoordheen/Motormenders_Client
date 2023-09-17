@@ -24,7 +24,6 @@ function OtpSignUp({mobile,fun}) {
           const phoneNo = '+91' + mobile
           signInWithPhoneNumber(auth, phoneNo, appVerifier)
             .then((confirmationResult) => {
-              console.log('asdfsdfsdfsdf');
               window.confirmationResult = confirmationResult;
               setShowOTP(true)
               toast.success('OTP send')
@@ -58,7 +57,6 @@ function OtpSignUp({mobile,fun}) {
   function otpVerify() {
     setClicked(true)
     window.confirmationResult.confirm(otp).then(async (res) => {
-        console.log(res,'opopopopo')
          toast.success('succefully Registered Please Login')
          navigate('/login')
 
@@ -66,7 +64,6 @@ function OtpSignUp({mobile,fun}) {
     }).catch((err) => {
       setResend(true)
       setClicked(false)
-      console.log('kkkkkokooijiuiuhioiu');
       toast.error('Otp verify error')
       console.log(err + 'otp verify error');
     })

@@ -28,7 +28,7 @@ const LoginForm = () => {
     
       try {
         const res = await ProAxios.post("/proffesionalLogin", { email, password });
-        if (res.data.Status === false) {
+        if (res.data.status === false) {
           toast.error(res.data.message)
         } else {
 
@@ -43,7 +43,7 @@ const LoginForm = () => {
           navigate('/proffesional/prohome');
         }
       } catch (error) {
-        toast.error("An error occurred. Please try again.");
+        toast.error(error);
         console.error(error);
       }
     };
