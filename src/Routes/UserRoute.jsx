@@ -16,6 +16,7 @@ import { useSelector } from 'react-redux'
 import Errorpage from '../Components/ReuseItems/Errorpage'
 import UserWallet from '../Pages/User/UserWallet'
 import Chats from '../Components/ReuseItems/Chat/ChatArea'
+import Contact from '../Components/ReuseItems/Contact'
 
 
 function UserRoute() {
@@ -38,6 +39,7 @@ function UserRoute() {
      <Route path='/bookings' element={token?<UsersBooking/>:<Navigate to={'/login'}/>}/>
      <Route path='/userchat'  element={token?<Chats/>:<Navigate to={'/login'}/>}/>
      <Route path="/wallet" element={<UserWallet/>} />
+     <Route path="/contact" element={<Contact/>} />
       <Route path='/*' element={<Errorpage/>}/>
 
     </Routes>

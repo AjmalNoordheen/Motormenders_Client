@@ -104,31 +104,20 @@ function UserHome() {
 </div>
 
 
-
-    <div className="bg-white py-12">
-  <div className="container mx-auto">
-    <h1 className="text-4xl font-extrabold text-center mb-8">Frequently Asked Questions</h1>
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-      {/* FAQ 1 */}
-      <div className="border p-4 rounded-lg shadow-md">
-        <h2 className="text-xl font-semibold">What Happend the Mechanic Cancel the Work?</h2>
-        <p className="text-gray-800">Dont Worry if a Mechanic Cancel Your Booking your Full amount will be Refunded Instantly</p>
-      </div>
-      <div className="border p-4 rounded-lg shadow-md">
-        <h2 className="text-xl font-semibold">How do I schedule an appointment?</h2>
-        <p className="text-gray-800">To schedule an appointment, log in to your account and visit the booking page. Select your desired service, provider, date, and time, then click 'Book Appointment'.</p>
-      </div>
-      <div className="border p-4 rounded-lg shadow-md">
-        <h2 className="text-xl font-semibold">How Will be the Payment?</h2>
-        <p className="text-gray-800">Dont Want Settle the full amount When booking you Want to pay a small Advance amount only when You Booking a Mechanic.</p>
-      </div>
-      {/* Repeat for other FAQs */}
-    </div>
-  </div>
-</div>
+ <div className='bg-white py-12'>
+            <div className='container mx-auto text-center'>
+              <h1 className='text-4xl font-extrabold mb-8'>Welcome to Motor Menders</h1>
+              <p className='text-xl text-gray-800'>
+                We are here to provide you with the best automotive services. Explore our website to find trusted
+                mechanics and book your appointments hassle-free.
+              </p>
+              <Link to='/prolists' className='mt-6 text-blue-600 hover:underline'>
+                View Our Service Providers
+              </Link>
+            </div>
+          </div>
 
 
-{/* <Contact/> */}
  
 
 </div>)}
