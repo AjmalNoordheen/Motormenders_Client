@@ -30,14 +30,12 @@ const DeleteAccountModal = ({fun, isOpen, closeModal,id,cancel}) => {
       isOpen={isOpen}
       onRequestClose={closeModal}
       className=" absolute top-1/2 left-1/2 translate-x-[-50%] border translate-y-[-50%]"
-      // overlayClassName="overlay"
       
     >
       <div className="bg-white shadow-xl rounded-lg relative top-1/2 max-w-md  m-auto p-4">
       <i class="fa-solid fa-circle-exclamation"></i>
         <div className="flex items-center">
-          {/* <div className="rounded-full border border-gray-300 flex items-center justify-center w-16 h-16 flex-shrink-0 mx-auto"> */}
-          {/* </div> */}
+         
           <div className="mt-4 md:mt-0 md:ml-6 text-center md:text-left">
             <p className="font-bold">Cancel Your Booking</p>
             <p className="text-sm text-gray-700 mt-1">

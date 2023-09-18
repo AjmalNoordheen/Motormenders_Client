@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from "react";
 import AxiosInstance from "../../../Axios/proAxios";
 import { useSelector } from "react-redux";
-import DeleteAccountModal from "../../../Components/ReuseItems/Modal";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import SideBar from "../ReuseItems/SideBar";
 
 function BookingPro() {
   const proData = useSelector((state) => state.Proffessional.proData);
