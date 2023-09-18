@@ -64,7 +64,6 @@ function OtpSignUp({mobile,fun}) {
     }).catch((err) => {
       setResend(true)
       setClicked(false)
-      navigate('/Errorpage')
       toast.error('Otp verify error')
       console.log(err + 'otp verify error');
     })
