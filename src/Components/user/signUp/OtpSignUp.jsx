@@ -3,10 +3,9 @@ import OtpInput from 'otp-input-react'
 import { CgSpinner } from 'react-icons/cg'
 import { BsFillShieldLockFill } from 'react-icons/bs'
 import { Toaster, toast } from 'react-hot-toast'
-import {RecaptchaVerifier, signInWithPhoneNumber } from "firebase/auth";
+import { getAuth, RecaptchaVerifier, signInWithPhoneNumber } from "firebase/auth";
 import { auth } from '../../../Firebase/Firebases.config' 
 import { useNavigate } from 'react-router-dom'
-import Axios from '../../../Axios/userAxios'
 
 function OtpSignUp({mobile,fun}) {
 
@@ -17,8 +16,6 @@ function OtpSignUp({mobile,fun}) {
   const [resend, setResend] = useState(false)
   const navigate = useNavigate()
 
-  const userAxios = Axios()
-  
   const checkMob = () => {
         setClicked(true)
         setResend(false)
@@ -59,22 +56,15 @@ function OtpSignUp({mobile,fun}) {
 
   function otpVerify() {
     setClicked(true)
-    window.confirmationResult.confirm(otp).then(() => {
-    setTimeout(async()=>{
-      const responce =  await userAxios.patch('/setVerified',{mobile})
-      if(responce.status==200){
-        toast.success('Registration Success Please Login')
-        navigate('/login')
+    window.confirmationResult.confirm(otp).then(async (res) => {
+         toast.success('succefully Registered Please Login')
+         navigate('/login')
 
-      }else{
-        toast.error('Registration cancelled')
-        navigate('/Errorpage')
-      }
-    },1000)
          
     }).catch((err) => {
       setResend(true)
       setClicked(false)
+      navigate('/Errorpage')
       toast.error('Otp verify error')
       console.log(err + 'otp verify error');
     })
