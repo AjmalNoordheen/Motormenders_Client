@@ -24,7 +24,7 @@ export default function Example({data,setHeight}) {
     { name: "Home", href: "/", current:  state=='Home' ? true:false },
     { name: "Freelancers", href: "/prolists", current: state=='Freelancers' ? true:false },
     { name: "WorkShop", href: `/prolists?type=${'workshop'}`, current:  state=='WorkShop' ? true:false },
-    { name: "Bookings",href:userToken? "/bookings":'', current:  state=='Bookings' ? true:false },
+    { name: "Bookings",href:userToken? "/bookings":'', current:  state=='Bookings' ? true:false }
   ];
   console.log(state)
 
@@ -40,7 +40,7 @@ export default function Example({data,setHeight}) {
               navigate('/')
             return
         }
-        if(res.data.message=="Authentication failed: invalid token." ){
+        if(res.data.message=="Authentication failed: invalid token !" ){
           dispatch(ClientLogout());
         }
       }else{
