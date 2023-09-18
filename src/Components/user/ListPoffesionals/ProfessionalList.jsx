@@ -284,15 +284,14 @@ function ProfessionalList() {
               </div>
 
               <div className="w-full sm:pr-9 pt-4 sm:pb-8 flex justify-end">
-                <div className="bg-[url('/footer/carban.jpg')] bg-origin-content bg-repeat-round h-[20rem] w-[64rem]">
-                  <h1 className="text-white m-2 text-2xl font-josefin-sans italic font-bold">
+                <div className="bg-[url('/looking-for-a-car-mechanic-near-me-1170x349.jpg')] flex flex-col items-end  bg-origin-content bg-repeat-round h-[20rem] w-[64rem]">
+                  <h1 className="text-yellow-400 lg:mt-[17%] mr-2  text-4xl font-josefin-sans italic font-bold">
                     Register as Mechanic
                   </h1>
-                  <p className="text-slate-500 m-2 w-1/2 text-sm">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Accusamus nisi harum possimus id eligendi hic saepe, magni
-                    quia nulla repellendus alias explicabo molestias voluptatem
-                    a? Debitis quia in beatae harum!
+                  <p className="text-slate-300 text-bold m-2 w-1/2 text-sm">
+                  Connect and Book to Your Nearest Work-Shop. Don't Lose Your Time
+                  Searching For the Services.Connect and Book to Your Nearest Work-Shop. Don't Lose Your Time
+                  Searching For the Services
                   </p>
                 </div>
               </div>

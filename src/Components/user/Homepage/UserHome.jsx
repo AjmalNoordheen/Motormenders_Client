@@ -84,7 +84,23 @@ function UserHome() {
 </div>
 
 
-<div className="bg-white py-12">
+
+
+
+ <div className='bg-white py-12'>
+            <div className='container mx-auto text-center'>
+              <h1 className='text-4xl font-extrabold mb-8'>Welcome to Motor Menders</h1>
+              <p className='text-xl text-gray-800'>
+                We are here to provide you with the best automotive services. Explore our website to find trusted
+                mechanics and book your appointments hassle-free.
+              </p>
+              <Link to='/prolists' className='mt-6 text-blue-600 hover:underline'>
+                View Our Service Providers
+              </Link>
+            </div>
+          </div>
+
+          <div className="bg-white py-12">
   <div className="container mx-auto bg-slate-100 rounded-lg p-4 ">
     <h1 className="text-2xl font-semibold mb-8 text-center">How It Works</h1>
     <div className="grid grid-cols-3 md:grid-cols-3 lg:grid-cols-5 gap-6 justify-center items-center">
@@ -102,22 +118,6 @@ function UserHome() {
     </div>
   </div>
 </div>
-
-
- <div className='bg-white py-12'>
-            <div className='container mx-auto text-center'>
-              <h1 className='text-4xl font-extrabold mb-8'>Welcome to Motor Menders</h1>
-              <p className='text-xl text-gray-800'>
-                We are here to provide you with the best automotive services. Explore our website to find trusted
-                mechanics and book your appointments hassle-free.
-              </p>
-              <Link to='/prolists' className='mt-6 text-blue-600 hover:underline'>
-                View Our Service Providers
-              </Link>
-            </div>
-          </div>
-
-
  
 
 </div>)}
