@@ -59,7 +59,8 @@ function OtpSignUp({mobile,fun}) {
 
   function otpVerify() {
     setClicked(true)
-    window.confirmationResult.confirm(otp).then(async (res) => {
+    window.confirmationResult.confirm(otp).then(() => {
+    setTimeout(async()=>{
       const responce =  await userAxios.patch('/setVerified',{mobile})
       if(responce.status==200){
         toast.success('Registration Success Please Login')
@@ -69,6 +70,7 @@ function OtpSignUp({mobile,fun}) {
         toast.error('Registration cancelled')
         navigate('/Errorpage')
       }
+    },1000)
          
     }).catch((err) => {
       setResend(true)
