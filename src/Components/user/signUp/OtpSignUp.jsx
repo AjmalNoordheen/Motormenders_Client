@@ -60,8 +60,8 @@ function OtpSignUp({mobile,fun}) {
   function otpVerify() {
     setClicked(true)
     window.confirmationResult.confirm(otp).then(async (res) => {
-      const res =  await userAxios.patch('/setVerified',{mobile})
-      if(res.status==200){
+      const responce =  await userAxios.patch('/setVerified',{mobile})
+      if(responce.status==200){
         toast.success('Registration Success Please Login')
 
       }else{
