@@ -51,7 +51,7 @@ function ProProfile() {
     if(res.data){
       setStatus(res.data)
     }else{
-      console.log(error)
+      navigate('/serverError')
     }
   
   }

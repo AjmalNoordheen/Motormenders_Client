@@ -64,29 +64,28 @@ function Register() {
 
     setSpin(true);
 
-      //  userAxios
-      // .post("/signUp", { name, email, mobile, password, repassword, location })
-      // .then((res) => {
-      //   if (res.data.status == true) {
-      //     let successMessage = res.data.message;
-      //     navigate("/login", { state: { successMessage } }).on(setSpin(false));
-      //   } else {
-      //     setSpin(false);
-      //     generateError(res.data.message);
-      //   }
-      // });
       userAxios
-      .post("/signUp", { name, email, mobile, password, repassword, location })
+      .post("/signUp", { name, email, mobile, password, location })
       .then((res) => {
+        toast.success(res.data)
+        if(res.data.status === false){
+          
+          setSpin(false);
+          console.log(res.data.message)
+          return
+        }
         if (res.data.status == true) {
-          console.log('success')
+          toast.success('otp')
           setShowOTP(true)
         } else {
           setSpin(false);
+          console.log(res.data.message)
           generateError(res.data.message);
         }
       }).catch((err)=>{
         console.log(err)
+        navigate('/serverError')
+
       })
 
       

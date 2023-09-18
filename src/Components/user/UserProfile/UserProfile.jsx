@@ -39,6 +39,8 @@ function UserProfile() {
       })
       .catch((error) => {
         console.log(error);
+        navigate('/serverError')
+
       });
   }, [email, show]);
 

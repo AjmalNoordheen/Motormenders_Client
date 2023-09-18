@@ -69,7 +69,9 @@ function Bookings() {
 
          }
       } catch (error) {
-        console.log(error);elled
+        console.log(error);
+        navigate('/serverError')
+
       }
     }
 
@@ -94,6 +96,8 @@ function Bookings() {
          }
       } catch (error) {
         console.log(error);
+        navigate('/serverError')
+
       }
     }
     

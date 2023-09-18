@@ -207,7 +207,7 @@ const SignUppro = () => {
         Forgot Password ?
       </span>
       <p className="text-sm ml-2 hover:text-blue-500 cursor-pointer">
-        Already have an Account ? <Link to={"/proffesional/login"}>Login</Link>
+        <Link to={"/proffesional/login"}><p> Already have an Account ?</p>Login</Link>
       </p>
     </form>
   </div>

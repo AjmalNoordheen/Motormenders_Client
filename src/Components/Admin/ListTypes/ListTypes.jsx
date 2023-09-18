@@ -126,18 +126,18 @@ function ListTypes() {
             </h2>
           </div>
           <ToastContainer /> {/* ToastContainer for showing success message */}
-          <div className="flex justify-center">
+          <div className="flex justify-center w-full">
             <form
-              className="flex justify-center w-1/2"
+              className="flex justify-center  w-1/2"
               onSubmit={addTypes}
               action=""
             >
               <br />
-              <div className="rounded md:w-[80vh] h-11 flex justify-end bg-[#e2e8f0]">
+              <div className="rounded md:w-11/12 lg:w-[80vh] h-11 flex justify-end bg-[#e2e8f0]">
                 <input
                   type="text"
                   ref={typeRef}
-                  className="h-9 mt-[0.29rem] md:w-[60vh] w-[25vh] sm:w-[50vh] lg:w-[100vh] ml-1 border-none bg-[#e2e8f0]"
+                  className="font-semibold py-[1.4rem]  lg:py-0 font-sans h-9 lg:mt-[0.29rem] md:w-[60vh] w-[25vh] sm:w-[50vh] lg:w-[100vh] ml-1 border-none bg-[#e2e8f0]"
                 />
                 <button className="border bg-[#6D6C6C] text-white font-semibold rounded md:px-6 md:py-1 sm:ms-5">
                   submit
@@ -152,17 +152,17 @@ function ListTypes() {
               Edit Types
             </h2>
           </div>
-          <div className="flex justify-center pt-3">
+          <div className="flex justify-center w-full pt-3">
             <form className="flex justify-center w-1/2" onSubmit={submitEdit} action="">
               <br />
-              <div className="rounded md:w-[80vh] h-11 flex justify-end bg-[#e2e8f0]">
+              <div className="rounded md:w-11/12 lg:w-[80vh] h-11 flex justify-end bg-[#e2e8f0]">
                 <input
                  ref={editRef}
                   type="text"
                   placeholder="Select the type from below"
                   onChange={(e)=>setEdit(e.target.value)}
                   value={edit}
-                  className="font-semibold  font-sans h-9 mt-[0.29rem] md:w-[60vh] w-[25vh] sm:w-[50vh] lg:w-[100vh] ml-1 border-none bg-[#e2e8f0]"
+                  className="font-semibold  py-[1.4rem]  lg:py-0  font-sans h-9 lg:mt-[0.29rem] md:w-[60vh] w-[25vh] sm:w-[50vh] lg:w-[100vh] ml-1 border-none bg-[#e2e8f0]"
                   name=""
                   id=""
                 />
@@ -177,12 +177,12 @@ function ListTypes() {
          
           <h1 className="text-center p-3 font-bold">List Types</h1>
           <div className="flex justify-center ">
-            <div className="rounded md:w-[80vh] overflow-auto h-[10rem] md:h-[17rem] flex pt-2 justify-center bg-[#e2e8f0]">
+            <div className="rounded w-11/12 lg:w-[80vh] overflow-auto h-auto md:h-[17rem] flex pt-2 justify-center bg-[#e2e8f0]">
               <div className="flex-col">
                 {details?details.length > 0
                   ? details.map((type, index) => {
                       return (
-                        <div key={type._id} className="bg-white flex h-11 w-[60vh]  items-center my-2 rounded-md">
+                        <div key={type._id} className="bg-white flex h-11 w-full lg:w-[60vh]  items-center my-2 rounded-md">
                           <div className="flex gap-3 w-full justify-between ">
                             <div className="flex gap-3 ml-2 font-bold">
                               <div className="text-slate-600">{index + 1}.</div>

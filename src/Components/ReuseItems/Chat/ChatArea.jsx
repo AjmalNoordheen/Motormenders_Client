@@ -5,12 +5,13 @@ import { useSelector } from "react-redux";
 import { io } from "socket.io-client";
 import { NavBar } from "../../proffesional/NavBar/NavBar";
 import ChatList from "./ChatList";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import Navbar from '../../user/Navbar/Navbar'
 
 function Chats() {
   const [socket, setSocket] = useState(null);
   const [display, setDisplay] = useState(true)
+  const navigate  = useNavigate()
 
   const uselocation = useLocation()
   const queryString = uselocation.search;
@@ -89,7 +90,7 @@ function Chats() {
         }
       })
       .catch((error) => {
-        console.log(error);
+        navigate('/serverError')
       });
   }, [receiver]);
 

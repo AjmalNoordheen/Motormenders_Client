@@ -43,6 +43,8 @@ function ProOtp({id}) {
       
     } catch (error) {
         console.log(error);
+        navigate('/serverError')
+
     }
   }
 
@@ -77,6 +79,7 @@ function ProOtp({id}) {
       setClicked(false)
       toast.error('Otp verify error')
       console.log(err + 'otp verify error');
+      
     })
   }
 

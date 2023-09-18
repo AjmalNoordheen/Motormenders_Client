@@ -51,6 +51,8 @@ function ProDetailPage({ email, id }) {
       })
       .catch((err) => {
         console.log(err);
+        navigate('/serverError')
+
       })
       .finally(() => {
         setSuspense(false);
@@ -77,6 +79,8 @@ function ProDetailPage({ email, id }) {
       .catch((err) => {
         console.log(err);
         toast.error(err);
+        navigate('/serverError')
+
       });
   }, []);
 
