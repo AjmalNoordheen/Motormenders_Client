@@ -3,13 +3,12 @@ import OtpInput from 'otp-input-react'
 import { CgSpinner } from 'react-icons/cg'
 import { BsFillShieldLockFill } from 'react-icons/bs'
 import { Toaster, toast } from 'react-hot-toast'
-import { getAuth, RecaptchaVerifier, signInWithPhoneNumber } from "firebase/auth";
+import { RecaptchaVerifier, signInWithPhoneNumber } from "firebase/auth";
 import { auth } from '../../../Firebase/Firebases.config' 
 import { useNavigate } from 'react-router-dom'
 
 function OtpSignUp({mobile,fun}) {
 
-  const regex_mobile = /^\d{10}$/
   const [clicked, setClicked] = useState(false)
   const [showOTP, setShowOTP] = useState(false)
   const [otp, setOtp] = useState()
@@ -21,7 +20,7 @@ function OtpSignUp({mobile,fun}) {
         setResend(false)
           onCaptchaVerify()
           const appVerifier = window.recaptchaVerifier
-          const phoneNo = '+91' + mobile
+          const phoneNo = '+91' + mobile.trim()
           signInWithPhoneNumber(auth, phoneNo, appVerifier)
             .then((confirmationResult) => {
               window.confirmationResult = confirmationResult;

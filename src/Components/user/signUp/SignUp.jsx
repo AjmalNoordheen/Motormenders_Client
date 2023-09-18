@@ -67,13 +67,7 @@ function Register() {
       userAxios
       .post("/signUp", { name, email, mobile, password, location })
       .then((res) => {
-        toast.success(res.data)
-        if(res.data.status === false){
-          
-          setSpin(false);
-          console.log(res.data.message)
-          return
-        }
+       
         if (res.data.status == true) {
           toast.success('otp')
           setShowOTP(true)
