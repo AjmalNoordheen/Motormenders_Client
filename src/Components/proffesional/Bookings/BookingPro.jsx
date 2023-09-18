@@ -185,7 +185,7 @@ const completedBooking =()=>{
                                 : "/profileimage.png"
                             }
                             alt="Profile"
-                            className=" w-[5rem] m-auto  md:w-[70%] rounded-full md:h-[100%]"
+                            className=" w-[5rem] m-auto  md:w-20 rounded-full md:h-20"
                             />
                         </div>
                         <div className=" sm:w-full md:w-1/3 font-Shrikand font-medium flex flex-col space-y-1 pl-3 m-auto">
