@@ -92,7 +92,7 @@ function Register() {
   };
   return (
     <div>
-      {showOtp? <OtpSignUp mobile={phone} fun={setShowOTP}/>: <div className="h-screen md:flex">
+      {showOtp? <OtpSignUp mobile={phone}/>: <div className="h-screen md:flex">
         <div className="relative overflow-hidden md:flex w-1/2 bg-gradient-to-tr from-blue-800 to-purple-700 i justify-around items-center hidden">
           <div>
             <Toaster position="top-center" reverseOrder={false} />
