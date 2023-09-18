@@ -67,6 +67,7 @@ function OtpSignUp({mobile,fun}) {
 
       }else{
         toast.error('Registration cancelled')
+        navigate('/Errorpage')
       }
          
     }).catch((err) => {
