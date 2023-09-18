@@ -111,10 +111,12 @@ function OtpSignUp({mobile,fun}) {
             otpType='number'
             disabled={false}
             autoFocus
+            key={'otp-input'}
           /> : <input
             type="text"
             value={mobile}
-            // onChange={(e) => setPhone(e.target.value)}
+            
+            key={"mobile-input" }
             className="block border border-grey-light w-full p-3 rounded mb-4"
             name="phone"
             limit={10}/>}
