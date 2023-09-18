@@ -88,7 +88,7 @@ function WithDrawReq() {
                       >
                         <td className="px-6 w-[10%] h-[10%] py-4">
                           <img
-                            className="object-cover w-[90%] h-auto"
+                            className="object-cover w-20 h-20"
                             src={
                               item
                                 ? item.userId
@@ -145,9 +145,9 @@ function WithDrawReq() {
                           <button onClick={()=>{handleWithDraw(item._id,item.userId?item.userId._id:item.professional._id,type=item.userId?'user':'professional')}} className=" bg-green-600 w-15 text-white p-2  rounded-md w-[4rem]">
                             Accept
                           </button>
-                          <button className=" bg-red-800 w-15 text-white p-2  rounded-md w-[4rem]">
+                          {/* <button className=" bg-red-800 w-15 text-white p-2  rounded-md w-[4rem]">
                             Reject
-                          </button>
+                          </button> */}
                           ̥
                         </td>
                       </tr>
