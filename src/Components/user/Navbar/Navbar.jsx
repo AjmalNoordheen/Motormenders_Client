@@ -25,7 +25,6 @@ export default function Example({data,setHeight}) {
     { name: "Freelancers", href: "/prolists", current: state=='Freelancers' ? true:false },
     { name: "WorkShop", href: `/prolists?type=${'workshop'}`, current:  state=='WorkShop' ? true:false },
     { name: "Bookings",href:userToken? "/bookings":'', current:  state=='Bookings' ? true:false },
-    { name: "Chats", href:userToken?'/userchat':'', current:  state=='Chats' ? true:false },
   ];
   console.log(state)
 
