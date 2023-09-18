@@ -51,8 +51,6 @@ function ProDetailPage({ email, id }) {
       })
       .catch((err) => {
         console.log(err);
-        navigate('/serverError')
-
       })
       .finally(() => {
         setSuspense(false);
