@@ -155,13 +155,13 @@ const LoginForm = () => {
                 type="submit"
                 className="block w-full bg-indigo-600 mt-4 py-2 rounded-2xl text-white font-semibold mb-2"
               >
-                Register
+                Login
               </button>
             )}
            
            <div className="pb-5">
            <Link to={'/proffesional/otplogin'}  className="text-sm ml-2  hover:text-blue-500 cursor-pointer"> <i className="fa-solid fa-phone mr-1"></i>Otp-Login</Link>
-            <span   className="text-xs text-red-700  hover:text-blue-500 cursor-pointer ml-[19%]"> Forgot Password ? </span>
+            {/* <span   className="text-xs text-red-700  hover:text-blue-500 cursor-pointer ml-[19%]"> Forgot Password ? </span> */}
            </div>
           <div className="mt-[7%] pb-2">
           <GoogleLogin

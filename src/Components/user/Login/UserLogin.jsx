@@ -175,7 +175,7 @@ function UserLogin() {
             )}
            
             <Link to={'/otplogin'}  className="text-sm ml-2 hover:text-blue-500 cursor-pointer"> <i className="fa-solid fa-phone mr-1"></i>Otp-Login</Link>
-            <span   className="text-xs text-red-700  hover:text-blue-500 cursor-pointer ml-[19%]"> Forgot Password ? </span>
+            {/* <span   className="text-xs text-red-700  hover:text-blue-500 cursor-pointer ml-[19%]"> Forgot Password ? </span> */}
           <div className="mt-[7%] pb-2">
           <GoogleLogin
                   onSuccess={(credentialResponce) => {
