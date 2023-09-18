@@ -60,7 +60,6 @@ function OtpSignUp({mobile,fun}) {
   function otpVerify() {
     setClicked(true)
     window.confirmationResult.confirm(otp).then(async (res) => {
-     if(res){
       const responce =  await userAxios.patch('/setVerified',{mobile})
       if(responce.status==200){
         toast.success('Registration Success Please Login')
@@ -69,10 +68,6 @@ function OtpSignUp({mobile,fun}) {
       }else{
         toast.error('Registration cancelled')
       }
-
-     }else{
-      navigate('/serverError')
-     }
          
     }).catch((err) => {
       setResend(true)
