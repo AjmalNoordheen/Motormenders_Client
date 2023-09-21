@@ -77,8 +77,6 @@ function ProDetailPage({ email, id }) {
       .catch((err) => {
         console.log(err);
         toast.error(err);
-        navigate('/serverError')
-
       });
   }, []);
 
