@@ -58,7 +58,6 @@ function OtpSignUp({mobile,fun}) {
     window.confirmationResult.confirm(otp).then(async (res) => {
          toast.success('succefully Registered Please Login')
          navigate('/login')
-
          
     }).catch((err) => {
       setResend(true)

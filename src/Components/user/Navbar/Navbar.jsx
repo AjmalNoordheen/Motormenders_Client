@@ -177,7 +177,7 @@ export default function Example({data,setHeight}) {
                   </Menu>
                 ) : (
                   <Link
-                    className="text-black font-semibold border border-white hover:bg-blue-700 hover:text-white bg-blue-400 px-3 py-1 rounded"
+                    className="text-white font-semibold border border-white hover:bg-blue-700 hover:text-white  px-3 py-1 rounded"
                     to={"/login"}
                   >
                     Login
