@@ -29,7 +29,7 @@ const SignUppro = () => {
       //  name = nameref.current.value;
       //  email = emailref.current.value;
       //  password = passwordref.current.value;
-       repassword = repasswordref.current.value;
+          const repassword = repasswordref.current.value;
     
       console.log('koooooooi');
       const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
