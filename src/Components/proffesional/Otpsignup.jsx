@@ -62,7 +62,7 @@ function OtpSignUp({mobile,fun,name,email}) {
     setClicked(true)
     window.confirmationResult.confirm(otp).then(async (res) => {
           try {
-        const res = await  ProAxios.post('/proffesionalsignUp', { name, email, mobile, password, repassword });
+        const res = await  ProAxios.post('/proffesionalsignUp', { name, email, mobile, password });
         if (res.data.status === true) {
           navigate('/proffesional/login');
           toast.success('succefully Registered Please Login')
