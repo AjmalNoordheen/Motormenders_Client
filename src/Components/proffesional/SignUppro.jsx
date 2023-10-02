@@ -7,18 +7,16 @@ import OtpSignUp from './Otpsignup';
 
 
 const SignUppro = () => {
-  const nameref       = useRef()
-  const emailref      = useRef()
-  const passwordref   = useRef()
+  // const nameref       = useRef()
+  // const emailref      = useRef()
+  // const passwordref   = useRef()
   const repasswordref = useRef()
   const navigate = useNavigate()
 
-  let repassword
-  let email
-  let password
-  let name
-
   const [mobile,setMobile] = useState('')
+  const [email,setEmail] = useState('')
+  const [password,setPassword] = useState('')
+  const [name,setName] = useState('')
 
   const [spin,setSpin] = useState(false)
   const [showOtp,setShowOTP] = useState(false)
@@ -28,9 +26,9 @@ const SignUppro = () => {
 
     const signUpForm = async (e) => {
       e.preventDefault();
-       name = nameref.current.value;
-       email = emailref.current.value;
-       password = passwordref.current.value;
+      //  name = nameref.current.value;
+      //  email = emailref.current.value;
+      //  password = passwordref.current.value;
        repassword = repasswordref.current.value;
     
       console.log('koooooooi');
@@ -129,7 +127,8 @@ const SignUppro = () => {
           type="text"
           name=""
           id=""
-          ref={nameref}
+          // ref={nameref}
+          onChange={(e)=>{setName(e.target.value)}}
           placeholder="Username"
         />
       </div>
@@ -149,7 +148,8 @@ const SignUppro = () => {
           />
         </svg>
         <input
-          ref={emailref}
+          // ref={emailref}
+          onChange={(e)=>{setEmail(e.target.value)}}
           className="pl-2 outline-none border-none"
           type="email"
           name=""
@@ -188,7 +188,8 @@ const SignUppro = () => {
           type="text"
           name=""
           id=""
-          ref={passwordref}
+          // ref={passwordref}
+          onChange={(e)=>{setPassword(e.target.value)}}
           placeholder="Password"
         />
       </div>
