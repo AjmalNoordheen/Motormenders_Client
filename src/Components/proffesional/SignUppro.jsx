@@ -29,7 +29,7 @@ const SignUppro = () => {
       //  name = nameref.current.value;
       //  email = emailref.current.value;
       //  password = passwordref.current.value;
-          const repassword = repasswordref.current.value;
+      const repassword = repasswordref.current.value;
     
       console.log('koooooooi');
       const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
@@ -73,7 +73,7 @@ const SignUppro = () => {
   
   return (   
 <div>
-{showOtp?<OtpSignUp name={name} email={email} mobile={mobile} fun={setShowOTP} />:
+{showOtp?<OtpSignUp password={password} name={name} email={email} mobile={mobile} fun={setShowOTP} />:
 <div className="h-screen flex items-center justify-center md:justify-between md:items-stretch ">
   <div className="relative overflow-hidden md:flex w-1/2 bg-gradient-to-tr from-blue-800 to-purple-700 i justify-around items-center hidden">
     <div>
