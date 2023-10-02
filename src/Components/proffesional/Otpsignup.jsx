@@ -6,15 +6,19 @@ import { Toaster, toast } from 'react-hot-toast'
 import { RecaptchaVerifier, signInWithPhoneNumber } from "firebase/auth";
 import { auth} from '../../Firebase/Firebases.config'
 import { useNavigate } from 'react-router-dom'
+import createAxiosInstance from '../../Axios/proAxios'
+
 
 function OtpSignUp({mobile,fun,name,email}) {
 
     console.log(name,email,mobile)
+  const ProAxios = createAxiosInstance()
   const [clicked, setClicked] = useState(false)
   const [showOTP, setShowOTP] = useState(false)
   const [otp, setOtp] = useState()
   const [resend, setResend] = useState(false)
   const navigate = useNavigate()
+
 
   const checkMob = () => {
         setClicked(true)
@@ -57,8 +61,20 @@ function OtpSignUp({mobile,fun,name,email}) {
   function otpVerify() {
     setClicked(true)
     window.confirmationResult.confirm(otp).then(async (res) => {
-         toast.success('succefully Registered Please Login')
-         navigate('/login')
+          try {
+        const res = await  ProAxios.post('/proffesionalsignUp', { name, email, mobile, password, repassword });
+        if (res.data.status === true) {
+          navigate('/proffesional/login');
+          toast.success('succefully Registered Please Login')
+        } else {
+          generateError('Signup Failed');
+          navigate('/proffesional/signup');
+        }
+      } catch (error) {
+        // Handle any errors that might occur during the API call
+        generateError('An error occurred. Please try again.');
+        console.error(error);
+      }
          
     }).catch((err) => {
       setResend(true)
