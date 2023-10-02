@@ -60,21 +60,33 @@ function OtpSignUp({mobile,fun,name,email}) {
 
   function otpVerify() {
     setClicked(true)
-    window.confirmationResult.confirm(otp).then(async (res) => {
-          try {
-        const res = await  ProAxios.post('/proffesionalsignUp', { name, email, mobile, password });
-        if (res.data.status === true) {
-          navigate('/proffesional/login');
-          toast.success('succefully Registered Please Login')
-        } else {
-          generateError('Signup Failed');
-          navigate('/proffesional/signup');
-        }
-      } catch (error) {
-        // Handle any errors that might occur during the API call
-        generateError('An error occurred. Please try again.');
-        console.error(error);
-      }
+    window.confirmationResult.confirm(otp).then( (res) => {
+
+          ProAxios.post('/proffesionalsignUp', { name, email, mobile, password }).then((res)=>{
+            if (res.data.status === true) {
+                navigate('/proffesional/login');
+                toast.success('succefully Registered Please Login')
+              } else {
+                generateError('Signup Failed');
+                navigate('/proffesional/signup');
+              }
+          })
+       
+      
+    //       try {
+    //     const res = await  ProAxios.post('/proffesionalsignUp', { name, email, mobile, password });
+    //     if (res.data.status === true) {
+    //       navigate('/proffesional/login');
+    //       toast.success('succefully Registered Please Login')
+    //     } else {
+    //       generateError('Signup Failed');
+    //       navigate('/proffesional/signup');
+    //     }
+    //   } catch (error) {
+    //     // Handle any errors that might occur during the API call
+    //     generateError('An error occurred. Please try again.');
+    //     console.error(error);
+    //   }
          
     }).catch((err) => {
       setResend(true)
