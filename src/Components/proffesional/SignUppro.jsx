@@ -3,28 +3,35 @@ import { useRef } from 'react';
 import { Toaster,toast } from 'react-hot-toast';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import createAxiosInstance from '../../Axios/proAxios'
+import OtpSignUp from './Otpsignup';
 
 
 const SignUppro = () => {
   const nameref       = useRef()
   const emailref      = useRef()
-  const mobileref     = useRef()
   const passwordref   = useRef()
   const repasswordref = useRef()
   const navigate = useNavigate()
 
+  let repassword
+  let email
+  let password
+  let name
+
+  const [mobile,setMobile] = useState('')
+
   const [spin,setSpin] = useState(false)
+  const [showOtp,setShowOTP] = useState(false)
 
   const ProAxios = createAxiosInstance()
   const generateError = (err) => toast.error(err, { position: 'bottom-center' });
 
     const signUpForm = async (e) => {
       e.preventDefault();
-      const name = nameref.current.value;
-      const email = emailref.current.value;
-      const mobile = mobileref.current.value;
-      const password = passwordref.current.value;
-      const repassword = repasswordref.current.value;
+       name = nameref.current.value;
+       email = emailref.current.value;
+       password = passwordref.current.value;
+       repassword = repasswordref.current.value;
     
       console.log('koooooooi');
       const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
@@ -37,28 +44,38 @@ const SignUppro = () => {
         return generateError('Mobile number must contain 10 numbers');
       } else if (password.length < 4) {
         return generateError('Password should be at least 4 characters');
+      }else if(password !== repassword){
+        return generateError("Password dosen't match");
       }
     
+      // try {
+      //   setSpin(true)
+      //   const res = await  ProAxios.post('/proffesionalsignUp', { name, email, mobile, password, repassword });
+      //   setSpin(false)
+      //   if (res.data.status === true) {
+      //     navigate('/proffesional/login');
+      //   } else {
+      //     generateError(res.data.message);
+      //   }
+      // } catch (error) {
+      //   setSpin(false)
+      //   // Handle any errors that might occur during the API call
+      //   generateError('An error occurred. Please try again.');
+      //   console.error(error);
+      // }
+
       try {
         setSpin(true)
-        const res = await  ProAxios.post('/proffesionalsignUp', { name, email, mobile, password, repassword });
-        setSpin(false)
-        if (res.data.status === true) {
-          navigate('/proffesional/login');
-        } else {
-          generateError(res.data.message);
-        }
+        setShowOTP(true)
       } catch (error) {
-        setSpin(false)
-        // Handle any errors that might occur during the API call
-        generateError('An error occurred. Please try again.');
-        console.error(error);
+        console.log(error)
       }
     };
     
   
   return (   
 <div>
+{showOtp?<OtpSignUp name={name} email={email} mobile={mobile} fun={setShowOTP} />:
 <div className="h-screen flex items-center justify-center md:justify-between md:items-stretch ">
   <div className="relative overflow-hidden md:flex w-1/2 bg-gradient-to-tr from-blue-800 to-purple-700 i justify-around items-center hidden">
     <div>
@@ -149,7 +166,7 @@ const SignUppro = () => {
           id=""
           // onChange={(e)=>setPhone(e.target.value)}
           placeholder="Mobile"
-          ref={mobileref}
+          onChange={(e)=>{setMobile(e.target.value)}}
         />
       </div>
 
@@ -212,6 +229,8 @@ const SignUppro = () => {
     </form>
   </div>
 </div>
+}
+
 
 </div>
   );

@@ -19,15 +19,12 @@ export const ProffesionalAuth = createSlice({
     },
     ProfessionalName(state, action) {
       state.userName = action.payload.userName;
-      console.log(state.userName + 'uuuuuuuuu');
     },
     ProfessionalEmail(state, action) {
       state.email = action.payload.email;
-      console.log(state.userName + 'uuuuuuuuu');
     },
     ProfessionalImage(state, action) {
       state.image = action.payload.image;
-      console.log(state.userName + 'uuuuuuuuu');
     },
     ProfessionalData(state,action){
       state.proData = action.payload.proData
