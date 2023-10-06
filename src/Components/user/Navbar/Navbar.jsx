@@ -21,17 +21,15 @@ export default function Example({data,setHeight}) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const userAxios = AxiosInstance()
-  const [state,setState] = useState('')
+  
   const navigation = [
-    { current: state == 'Home' ? true:false, name: "Home", href: "/" },
-    { current: state == 'Freelancers' ? true:false, name: "Freelancers", href: "/prolists" },
-    { current:  state=='WorkShop' ? true:false, name: "WorkShop", href: `/prolists?type=${'workshop'}` },
-    { current:  state=='Bookings' ? true:false, name: "Bookings",href:userToken? "/bookings":'' }
+    { current: false, name: "Home", href: "/" },
+    { current: false, name: "Freelancers", href: "/prolists" },
+    { current: false, name: "WorkShop", href: `/prolists?type=${'workshop'}` },
+    { current: false, name: "Bookings",href:userToken? "/bookings":'' }
   ];
-  console.log(state)
 
   const navigateNavbar = (name,href)=>{
-    setState(name)
     navigate(href)
   }
   useEffect(()=>{
@@ -85,7 +83,7 @@ export default function Example({data,setHeight}) {
                     {navigation.map((item) => (
                       <a
                         key={item.name}
-                        onClick={()=>navigateNavbar(item.name,item.href)}
+                        onClick={()=>navigateNavbar(item.href)}
                         className={classNames(
                           item.current
                             ? "bg-gray-900 text-white"
