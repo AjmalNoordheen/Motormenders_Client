@@ -1,7 +1,8 @@
 import {configureStore, getDefaultMiddleware} from '@reduxjs/toolkit'
 import {Clientreducer} from './userState'
 import {persistStore,persistReducer} from 'redux-persist'
-import storage from 'redux-persis/lib/storage'
+// import storage from 'redux-persis/lib/storage'
+import storage from 'redux-persist/lib/storage'
 import { proffesionalReducer } from './ProState';
 import { Adminreducer } from './AdminState'
 
