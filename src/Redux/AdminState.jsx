@@ -15,7 +15,6 @@ export const AdminAuth = createSlice({
         },
         AdminName(state,action){
             state.userName = action.payload.name
-            console.log(state.userName+'uuuuuuuuu');
         }
     }
 })

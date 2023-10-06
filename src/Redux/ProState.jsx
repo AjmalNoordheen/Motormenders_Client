@@ -35,6 +35,5 @@ export const ProffesionalAuth = createSlice({
   },
 });
 
-export const { ProfessionalLogin, ProfessionalLogout, ProfessionalName,ProfessionalEmail,ProfessionalImage,ProfessionalData } =
-  ProffesionalAuth.actions;
+export const { ProfessionalLogin, ProfessionalLogout, ProfessionalName,ProfessionalEmail,ProfessionalImage,ProfessionalData } = ProffesionalAuth.actions;
 export const proffesionalReducer = ProffesionalAuth.reducer; // Change the name to 'proffesionalReducer'

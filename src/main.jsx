@@ -5,8 +5,8 @@ import App from './App'
 import {BrowserRouter} from 'react-router-dom'
 import {Provider} from 'react-redux'
 import { Store, persistor } from './Redux/Store'
-import { PersistGate } from 'redux-persist/integration/react'
 import {GoogleOAuthProvider} from '@react-oauth/google'
+import { PersistGate } from 'redux-persist/integration/react'
  
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
