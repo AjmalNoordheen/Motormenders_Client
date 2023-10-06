@@ -21,15 +21,15 @@ export default function Example({data,setHeight}) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const userAxios = AxiosInstance()
-  
+  const [state,setState] = useState('')
   const navigation = [
-    { current: false, name: "Home", href: "/" },
-    { current: false, name: "Freelancers", href: "/prolists" },
-    { current: false, name: "WorkShop", href: `/prolists?type=${'workshop'}` },
-    { current: false, name: "Bookings",href:userToken? "/bookings":'' }
+    { name: "Home", href: "/", current: false },
+    { name: "Freelancers", href: "/prolists", current:false },
+    { name: "WorkShop", href: `/prolists?type=${'workshop'}`, current:false },
+    { name: "Bookings",href:userToken? "/bookings":'', current:false }
   ];
 
-  const navigateNavbar = (name,href)=>{
+  const navigateNavbar = (href)=>{
     navigate(href)
   }
   useEffect(()=>{
