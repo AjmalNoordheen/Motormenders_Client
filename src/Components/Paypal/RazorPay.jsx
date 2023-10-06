@@ -8,13 +8,14 @@ function RazorPay({ data, bookingForm, fees }) {
     const userEmail = useSelector((state)=>state.Client.email)
     const navigate = useNavigate()
     const userAxios = createAxiosInstance()
+
     useEffect(() => {
         handlesubmit();
     }, []);
 
     const saveBooking =(paymentId)=>{
         const bookingData = {
-            paymentId:paymentId,
+            paymentId      :paymentId,
             proDetails     :data,
             fees           :fees,
             date           :bookingForm.bookingDate,
@@ -37,7 +38,6 @@ function RazorPay({ data, bookingForm, fees }) {
             alert('success')
            }
         })
-        console.log(paymentId)
     }
 
     function handlesubmit (){
@@ -51,6 +51,11 @@ function RazorPay({ data, bookingForm, fees }) {
             handler:function(response){
                 saveBooking(response.razorpay_payment_id)
                 navigate('/successpage')
+            },
+            modal: {
+                ondismiss: function() {
+                    navigate('/login'); // Navigate to the login page when the payment is canceled
+                },
             },
             prefill:{
                 name:'Motor Menders',

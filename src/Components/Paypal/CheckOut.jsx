@@ -3,67 +3,72 @@ import RazorPay from "./RazorPay";
 import NavBar from "../user/Navbar/Navbar";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import createAxiosInstance from '../../Axios/userAxios'
+import createAxiosInstance from "../../Axios/userAxios";
 
 function CheckOut() {
   const [checkOut, setCheckOut] = useState(false);
-  const [userdata, setuserdata] = useState('');
-  const location = useLocation()
-  const details = location.state
-  const dispatch = useDispatch()
-  const navigate = useNavigate()
-  const userAxios = createAxiosInstance()
-  const email = useSelector((state)=>state.Client.email)
-  const token = useSelector((state)=>state.Client.Token)
-  const phoneRef = useRef()
-  const locationRef = useRef()
-  const LandmarkRef = useRef()
-  let locationdata 
-  let landmark
+  const [userdata, setuserdata] = useState("");
+  const location = useLocation();
+  const details = location.state;
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const userAxios = createAxiosInstance();
+  const email = useSelector((state) => state.Client.email);
+  const token = useSelector((state) => state.Client.Token);
+  const phoneRef = useRef();
+  const locationRef = useRef();
+  const LandmarkRef = useRef();
+  let locationdata;
+  let landmark;
 
-
-  if(checkOut==true){
-     locationdata = locationRef.current.value
-     landmark     = LandmarkRef.current.value
+  if (checkOut == true) {
+    locationdata = locationRef.current.value;
+    landmark = LandmarkRef.current.value;
   }
- 
-  useEffect(()=>{
-     userAxios.get(`getUserProfile?email=${email}`,
-    {
-      headers:{
-        authorization:`Bearer ${token}`
-      },}
-    ).then((res)=>{
-      if(res.data.message=='blocked'){
-        toast.error('Account is blocked ')
-        setTimeout(() => {
-          navigate('/login')
-        }, 300);
-        return
-      }
-      if(res.data.user){
-        setuserdata(res.data.user)
-      }else if(res.data.status==false){
-        dispatch(ClientLogout())
-        navigate('/')
-      }
-    }).catch((err)=>{
-      console.log(err)
-    })
-  },[token])
 
-  const bookingDetails ={
-    bookingDate:details.bookingDate,
-    location:locationdata,
-    landMark:landmark
-  }
+  useEffect(() => {
+    userAxios
+      .get(`getUserProfile?email=${email}`, {
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => {
+        if (res.data.message == "blocked") {
+          toast.error("Account is blocked ");
+          setTimeout(() => {
+            navigate("/login");
+          }, 300);
+          return;
+        }
+        if (res.data.user) {
+          setuserdata(res.data.user);
+        } else if (res.data.status == false) {
+          dispatch(ClientLogout());
+          navigate("/");
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [token]);
+
+  const bookingDetails = {
+    bookingDate: details.bookingDate,
+    location: locationdata,
+    landMark: landmark,
+  };
   return (
     <>
       <div className="w-full bg-gradient-to-r from-blue-700 to-blue-600">
         <NavBar data={1} />
       </div>
       {checkOut ? (
-        <RazorPay data={details.profDetails} bookingForm={bookingDetails} fees={details.profDetails.fees}/>
+        <RazorPay
+          data={details.profDetails}
+          bookingForm={bookingDetails}
+          fees={details.profDetails.fees}
+        />
       ) : (
         <>
           <div className="max-w-screen-lg shadow-md mx-auto p-5 mt-5">
@@ -83,7 +88,10 @@ function CheckOut() {
                   repair
                 </p>
               </div>
-              <form className="md:col-span-8 p-10 "  onSubmit={() => setCheckOut(true)}>
+              <form
+                className="md:col-span-8 p-10 "
+                onSubmit={() => setCheckOut(true)}
+              >
                 <div className="flex flex-wrap -mx-3 mb-6">
                   <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                     <label
@@ -96,9 +104,8 @@ function CheckOut() {
                       className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                       id="grid-first-name"
                       type="text"
-                      value={userdata.name?userdata.name:''}
+                      value={userdata.name ? userdata.name : ""}
                     />
-                   
                   </div>
                   <div className="w-full md:w-1/2 px-3">
                     <label
@@ -111,7 +118,7 @@ function CheckOut() {
                       className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                       id="grid-last-name"
                       type="text"
-                      defaultValue={userdata.phone?userdata.phone:''}
+                      defaultValue={userdata.phone ? userdata.phone : ""}
                       ref={phoneRef}
                     />
                   </div>
@@ -126,7 +133,7 @@ function CheckOut() {
                       className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                       id="grid-last-name"
                       type="email"
-                      value={userdata.email?userdata.email:''}
+                      value={userdata.email ? userdata.email : ""}
                     />
                   </div>
                   <div className="w-full md:w-1/2 px-3  ">
@@ -141,10 +148,15 @@ function CheckOut() {
                       id="grid-last-name"
                       type="text"
                     >
-                   <p>₹ {details.profDetails.fees?details.profDetails.fees:''}</p>
+                      <p>
+                        ₹{" "}
+                        {details.profDetails.fees
+                          ? details.profDetails.fees
+                          : ""}
+                      </p>
                     </div>
                   </div>
-                 
+
                   <div className="w-full md:w-1/2 px-3 pt-3">
                     <label
                       className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
@@ -180,7 +192,6 @@ function CheckOut() {
                 <div className="flex flex-wrap -mx-3 mb-6">
                   <div className="flex justify-between w-full px-3">
                     <button
-                     
                       className="shadow bg-indigo-600 hover:bg-indigo-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-6 rounded"
                       type="submit"
                     >
