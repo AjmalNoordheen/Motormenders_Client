@@ -23,10 +23,10 @@ export default function Example({data,setHeight}) {
   const userAxios = AxiosInstance()
   const [state,setState] = useState('')
   const navigation = [
-    { name: "Home", href: "/", current:  state=='Home' ? true:false },
-    { name: "Freelancers", href: "/prolists", current: state=='Freelancers' ? true:false },
-    { name: "WorkShop", href: `/prolists?type=${'workshop'}`, current:  state=='WorkShop' ? true:false },
-    { name: "Bookings",href:userToken? "/bookings":'', current:  state=='Bookings' ? true:false }
+    { current: state == 'Home' ? true:false, name: "Home", href: "/" },
+    { current: state == 'Freelancers' ? true:false, name: "Freelancers", href: "/prolists" },
+    { current:  state=='WorkShop' ? true:false, name: "WorkShop", href: `/prolists?type=${'workshop'}` },
+    { current:  state=='Bookings' ? true:false, name: "Bookings",href:userToken? "/bookings":'' }
   ];
   console.log(state)
 

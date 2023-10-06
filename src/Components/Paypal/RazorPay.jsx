@@ -54,7 +54,7 @@ function RazorPay({ data, bookingForm, fees }) {
             },
             modal: {
                 ondismiss: function() {
-                    navigate('/login'); // Navigate to the login page when the payment is canceled
+                    navigate('/'); // Navigate to the login page when the payment is canceled
                 },
             },
             prefill:{
