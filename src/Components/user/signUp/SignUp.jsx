@@ -32,9 +32,9 @@ function Register() {
       !name.trim() ||
       !email.trim() ||
       !mobile.trim() ||
+      !location.trim() ||
       !password.trim() ||
-      !password.trim() ||
-      !password.trim()
+      !repassword.trim()
     ) {
       generateError("please fill all the fields");
       return;
