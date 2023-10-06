@@ -27,14 +27,12 @@ export const ClientAuth = createSlice({
         },
         ClientData(state,action){
             state.userData = action.payload.userData
-            console.log(state.userData,'success');
         },
         ClientId(state,action){
             state.id = action.payload.id
-            console.log( state.userData);
         }
     }
 })
 
 export const {ClientLogin,ClientLogout,ClientName,ClientEmail,ClientData} = ClientAuth.actions
-export const Clientreducer= ClientAuth.reducer;
+export const Clientreducer = ClientAuth.reducer;

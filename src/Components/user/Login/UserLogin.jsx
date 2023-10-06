@@ -49,7 +49,9 @@ function UserLogin() {
           });
       };
 
-      const LoginForm = (e) => {
+
+
+   const LoginForm = (e) => {
         e.preventDefault();
 
         const generateError = (err) =>
@@ -60,18 +62,22 @@ function UserLogin() {
         setSpin(true)
          userAxios
           .post(`/login?email=${email}`,{email,password})
-          .then((res) => {
+          .then( res => {
+              console.log('first')
             if(res.data.message=='blocked'){
               toast.error('Access Denied this Account is Blocked')
              setTimeout(() => {
               setSpin(false)
              }, 400);
             }
-            else if (res.data.status === false) {
+            
+            if (res.data.status === false) {
+              console.log('first')
               setTimeout(()=>{
                 setSpin(false)
               },300)
               toast.error(res.data.message)
+
             } else {
               const token = res.data.userSignUp.token;
               const name = res.data.userSignUp.name;

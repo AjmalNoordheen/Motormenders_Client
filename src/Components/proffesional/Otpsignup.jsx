@@ -8,9 +8,10 @@ import { auth } from "../../Firebase/Firebases.config";
 import { useNavigate } from "react-router-dom";
 import createAxiosInstance from "../../Axios/proAxios";
 
-function OtpSignUp({ mobile, fun, name, email,password }) {
-  console.log(name, email, mobile,password);
+function OtpSignUp({ mobile, fun, name, email, password }) {
+  console.log(name, email, mobile, password);
   const ProAxios = createAxiosInstance();
+
   const [clicked, setClicked] = useState(false);
   const [showOTP, setShowOTP] = useState(false);
   const [otp, setOtp] = useState();
@@ -19,6 +20,7 @@ function OtpSignUp({ mobile, fun, name, email,password }) {
 
   const checkMob = () => {
     setClicked(true);
+
     setResend(false);
     onCaptchaVerify();
     const appVerifier = window.recaptchaVerifier;
@@ -28,6 +30,7 @@ function OtpSignUp({ mobile, fun, name, email,password }) {
         window.confirmationResult = confirmationResult;
         setShowOTP(true);
         toast.success("OTP send");
+        setClicked(false);
       })
       .catch((error) => {
         console.log(error);
@@ -57,40 +60,27 @@ function OtpSignUp({ mobile, fun, name, email,password }) {
   }
 
   function otpVerify() {
-    console.log(otp);
     setClicked(true);
     window.confirmationResult
       .confirm(otp)
       .then((res) => {
+        alert("otp successfullly validated");
         ProAxios.post("/proffesionalsignUp", {
           name,
           email,
           mobile,
           password,
         }).then((res) => {
-          if (res.data.status === true) {
+          if (res.data.status) {
             navigate("/proffesional/login");
             toast.success("succefully Registered Please Login");
           } else {
-            generateError("Signup Failed");
-            navigate("/proffesional/signup");
+            fun(false);
+            const newError = {
+              [error]: "Duplicate Phone number/User already existed",
+            };
           }
         });
-
-        //       try {
-        //     const res = await  ProAxios.post('/proffesionalsignUp', { name, email, mobile, password });
-        //     if (res.data.status === true) {
-        //       navigate('/proffesional/login');
-        //       toast.success('succefully Registered Please Login')
-        //     } else {
-        //       generateError('Signup Failed');
-        //       navigate('/proffesional/signup');
-        //     }
-        //   } catch (error) {
-        //     // Handle any errors that might occur during the API call
-        //     generateError('An error occurred. Please try again.');
-        //     console.error(error);
-        //   }
       })
       .catch((err) => {
         setResend(true);

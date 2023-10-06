@@ -115,7 +115,7 @@ function OtpLogin() {
   return (
     <div style={{ 'height': '100vh' }} className='bg-gray-800 flex justify-center items-center'>
     <div id='recaptcha-container'></div>
-    <div className=' bg-gray-900 p-5 rounded'>
+    <div className=' bg-green-900 p-5 rounded'>
       <Toaster toastOptions={3000} /><div className='bg-white text-emarald-500 w-fit mx-auto p-4 rounded-full'>
         <BsFillShieldLockFill size={30} />
       </div>
@@ -138,7 +138,7 @@ function OtpLogin() {
        {showOTP&&<div className='flex justify-center'>
           <span className='text-center text-white'>{seconds}</span>
         </div>}
-        {!showOTP ? <button className='text-white mt-3 bg-gray-600 w-full flex gap-1 items-center justify-center py-2.5 rounded' 
+        {!showOTP ? <button className='text-white mt-3 bg-black w-full flex gap-1 items-center justify-center py-2.5 rounded' 
         onClick={checkMob}><span>Send Otp</span></button> : resend ? 
         <button className='text-white mt-3 bg-green-800 w-full flex gap-1 items-center justify-center py-2.5 rounded'
          onClick={checkMob}>{clicked ? <CgSpinner size={20} className='animate-spin' /> : ''}<span>Resend Otp</span></button> : 

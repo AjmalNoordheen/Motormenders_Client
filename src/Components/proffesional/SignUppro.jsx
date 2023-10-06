@@ -7,9 +7,6 @@ import OtpSignUp from './Otpsignup';
 
 
 const SignUppro = () => {
-  // const nameref       = useRef()
-  // const emailref      = useRef()
-  // const passwordref   = useRef()
   const repasswordref = useRef()
   const navigate = useNavigate()
 
@@ -26,9 +23,6 @@ const SignUppro = () => {
 
     const signUpForm = async (e) => {
       e.preventDefault();
-      //  name = nameref.current.value;
-      //  email = emailref.current.value;
-      //  password = passwordref.current.value;
       const repassword = repasswordref.current.value;
     
       console.log('koooooooi');
@@ -46,28 +40,25 @@ const SignUppro = () => {
         return generateError("Password dosen't match");
       }
     
-      // try {
-      //   setSpin(true)
-      //   const res = await  ProAxios.post('/proffesionalsignUp', { name, email, mobile, password, repassword });
-      //   setSpin(false)
-      //   if (res.data.status === true) {
-      //     navigate('/proffesional/login');
-      //   } else {
-      //     generateError(res.data.message);
-      //   }
-      // } catch (error) {
-      //   setSpin(false)
-      //   // Handle any errors that might occur during the API call
-      //   generateError('An error occurred. Please try again.');
-      //   console.error(error);
-      // }
-
       try {
         setSpin(true)
-        setShowOTP(true)
+        const res = await  ProAxios.post('/checkproffesionalsignUp', {email, mobile});
+        setSpin(false)
+        if (res.data.status === true) {
+          setShowOTP(true)
+        } else {
+          generateError('user already exists');
+          setSpin(false)
+
+        }
       } catch (error) {
-        console.log(error)
+        setSpin(false)
+        // Handle any errors that might occur during the API call
+        generateError('An error occurred. Please try again.');
+        console.error(error);
       }
+
+   
     };
     
   
@@ -127,7 +118,6 @@ const SignUppro = () => {
           type="text"
           name=""
           id=""
-          // ref={nameref}
           onChange={(e)=>{setName(e.target.value)}}
           placeholder="Username"
         />
@@ -148,7 +138,6 @@ const SignUppro = () => {
           />
         </svg>
         <input
-          // ref={emailref}
           onChange={(e)=>{setEmail(e.target.value)}}
           className="pl-2 outline-none border-none"
           type="email"
@@ -164,7 +153,6 @@ const SignUppro = () => {
           type="number"
           name=""
           id=""
-          // onChange={(e)=>setPhone(e.target.value)}
           placeholder="Mobile"
           onChange={(e)=>{setMobile(e.target.value)}}
         />
@@ -188,7 +176,6 @@ const SignUppro = () => {
           type="text"
           name=""
           id=""
-          // ref={passwordref}
           onChange={(e)=>{setPassword(e.target.value)}}
           placeholder="Password"
         />
@@ -221,11 +208,8 @@ const SignUppro = () => {
         </button>
       )}
 
-      <span className="text-sm ml-[25%] hover:text-blue-500  cursor-pointer">
-        Forgot Password ?
-      </span>
       <p className="text-sm ml-2 hover:text-blue-500 cursor-pointer">
-        <Link to={"/proffesional/login"}><p> Already have an Account ?</p>Login</Link>
+        <Link to={"/proffesional/login"}><p> Already have an Account ?Login</p></Link>
       </p>
     </form>
   </div>

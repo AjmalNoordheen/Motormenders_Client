@@ -13,8 +13,10 @@ function classNames(...classes) {
 }
 
 export default function Example({data,setHeight}) {
+  
   const userToken = useSelector((Store) => Store.Client.Token);
   const userName = useSelector((Store) => Store.Client.userName);
+
   const email = useSelector((Store) => Store.Client.email);
   const dispatch = useDispatch();
   const navigate = useNavigate();
