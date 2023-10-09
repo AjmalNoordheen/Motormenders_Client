@@ -21,6 +21,13 @@ function Register() {
   const generateError = (err) =>
     toast.error(err, { position: "bottom-center" });
 
+    function validatePassword(password) {
+      // Password should contain at least one digit, one letter, and one special character
+      const passwordRegex = /^(?=.*\d)(?=.*[a-zA-Z])(?=.*\W).+$/;
+  
+      return passwordRegex.test(password);
+  }
+
   const signUpForm = (e) => {
     e.preventDefault();
 
@@ -53,7 +60,9 @@ function Register() {
     if (password.length < 4) {
       generateError("Password should be at least 6 characters long");
       return;
-    }
+    }else if (!validatePassword(password)) {
+      return generateError('Password must contain at least one digit, one letter, and one special character');
+  }
     if (password != repassword) {
       generateError("Password dosent Match");
       return;
@@ -210,7 +219,7 @@ function Register() {
                   name=""
                   id=""
                   onChange={(e) => setPassword(e.target.value)}
-                  placeholder="Password"
+                  placeholder="Password must conatin atleast 123,AbC,@!$"
                 />
               </div>
               <div className="flex items-center border-blue-300 hover:border-blue-500 border-2 py-2 px-3 rounded-2xl  mt-4">

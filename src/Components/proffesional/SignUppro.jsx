@@ -25,7 +25,13 @@ const SignUppro = () => {
       e.preventDefault();
       const repassword = repasswordref.current.value;
     
-      console.log('koooooooi');
+      function validatePassword(password) {
+        // Password should contain at least one digit, one letter, and one special character
+        const passwordRegex = /^(?=.*\d)(?=.*[a-zA-Z])(?=.*\W).+$/;
+    
+        return passwordRegex.test(password);
+    }
+
       const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
     
       if (!name.trim() || !email.trim() || !mobile.trim() || !password.trim() || !repassword.trim()) {
@@ -36,7 +42,10 @@ const SignUppro = () => {
         return generateError('Mobile number must contain 10 numbers');
       } else if (password.length < 4) {
         return generateError('Password should be at least 4 characters');
-      }else if(password !== repassword){
+      }else if (!validatePassword(password)) {
+        return generateError('Password must contain at least one digit, one letter, and one special character');
+    }
+      else if(password !== repassword){
         return generateError("Password dosen't match");
       }
     
@@ -177,7 +186,7 @@ const SignUppro = () => {
           name=""
           id=""
           onChange={(e)=>{setPassword(e.target.value)}}
-          placeholder="Password"
+          placeholder="Password Contain  atleast 123,ABc,@#^"
         />
       </div>
       <div className="flex items-center border-blue-300 hover:border-blue-500 border-2 py-2 px-3 rounded-2xl  mt-4">
