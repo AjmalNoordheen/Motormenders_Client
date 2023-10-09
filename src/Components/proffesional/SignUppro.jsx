@@ -185,8 +185,9 @@ const SignUppro = () => {
           type="text"
           name=""
           id=""
+          title='must contain at least 1 digit, 1 letter, and 1 special character '
           onChange={(e)=>{setPassword(e.target.value)}}
-          placeholder="Password Contain  atleast 123,ABc,@#^"
+          placeholder="Password "
         />
       </div>
       <div className="flex items-center border-blue-300 hover:border-blue-500 border-2 py-2 px-3 rounded-2xl  mt-4">

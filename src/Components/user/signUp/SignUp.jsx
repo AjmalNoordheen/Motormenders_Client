@@ -217,9 +217,10 @@ function Register() {
                   className="pl-2 outline-none border-none"
                   type="text"
                   name=""
+                  title="must contain at least 1 digit, 1 letter, and 1 special character "
                   id=""
                   onChange={(e) => setPassword(e.target.value)}
-                  placeholder="Password must conatin atleast 123,AbC,@!$"
+                  placeholder="Password "
                 />
               </div>
               <div className="flex items-center border-blue-300 hover:border-blue-500 border-2 py-2 px-3 rounded-2xl  mt-4">
