@@ -5,7 +5,7 @@ import {RecaptchaVerifier, signInWithPhoneNumber } from "firebase/auth";
 import { auth } from '../../../Firebase/Firebases.config'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { ClientLogin } from '../../../Redux/userState'
+import { ClientData, ClientEmail, ClientLogin, ClientName } from '../../../Redux/userState'
 import createAxiosInstance from '../../../Axios/userAxios'
 import { Toaster, toast } from 'react-hot-toast'
 import { CgSpinner } from 'react-icons/cg'
@@ -31,7 +31,7 @@ function OtpLogin() {
       } else{
         userAxios.post('/otpLogin', { newPhone }).then((res) => {
           if (res.status == 200) {
-            setData(res.data.data)
+            setData(res.data.userSignUp)
             onCaptchaVerify()
             const appVerifier = window.recaptchaVerifier
             const phoneNo = '+91' + newPhone
@@ -77,7 +77,13 @@ function OtpLogin() {
   function otpVerify() {
     setClicked(true)
     window.confirmationResult.confirm(otp).then(async (res) => {
+      const name = res.data.userSignUp.name;
+      const email = res.data.userSignUp.email;
+      const user = res.data.user;
       dispatch(ClientLogin({token: data.token}))
+      dispatch(ClientName({ name: name }));
+      dispatch(ClientEmail({ email: email }));
+      dispatch(ClientData({ userData: user }));
       navigate('/')
     }).catch((err) => {
       setResend(true)

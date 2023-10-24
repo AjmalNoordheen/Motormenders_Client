@@ -70,9 +70,10 @@ function OtpSignUp({ name, email, mobile, password, location, fun }) {
         })
         .then((res) => {
           if (res.data.status) {
-            navigate("/login");
             fun(false);
+            navigate("/login");
           } else {
+            setClicked(false)
             navigate("/signup");
             fun(false);
           }
