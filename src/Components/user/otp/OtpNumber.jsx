@@ -16,6 +16,7 @@ function OtpLogin() {
   const [showOTP, setShowOTP] = useState(false)
   const [phone, setPhone] = useState('')
   const [otp, setOtp] = useState()
+  const [user, setUser] = useState('')
   const [resend, setResend] = useState(false)
   const [data, setData] = useState('')
   const navigate = useNavigate()
@@ -32,6 +33,7 @@ function OtpLogin() {
         userAxios.post('/otpLogin', { newPhone }).then((res) => {
           if (res.status == 200) {
             setData(res.data.userSignUp)
+            setUser(res.data.user)
             onCaptchaVerify()
             const appVerifier = window.recaptchaVerifier
             const phoneNo = '+91' + newPhone
@@ -77,9 +79,8 @@ function OtpLogin() {
   function otpVerify() {
     setClicked(true)
     window.confirmationResult.confirm(otp).then(async (res) => {
-      const name = res.data.userSignUp.name;
-      const email = res.data.userSignUp.email;
-      const user = res.data.user;
+      const name = data.name;
+      const email = data.email;
       dispatch(ClientLogin({token: data.token}))
       dispatch(ClientName({ name: name }));
       dispatch(ClientEmail({ email: email }));
