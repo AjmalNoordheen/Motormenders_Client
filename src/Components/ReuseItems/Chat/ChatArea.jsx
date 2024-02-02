@@ -50,7 +50,8 @@ function Chats() {
   }, []);
 
   useEffect(() => {
-    const newSocket = io("https://api.motormenders.online/chat");
+    // const newSocket = io("https://api.motormenders.online/chat");
+    const newSocket = io("https://motor-menders-server.vercel.app/chat");
     setSocket(newSocket);
     return () => {
       if (newSocket) newSocket.disconnect();
