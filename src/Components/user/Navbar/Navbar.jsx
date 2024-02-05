@@ -32,22 +32,22 @@ export default function Example({data,setHeight}) {
   const navigateNavbar = (href)=>{
     navigate(href)
   }
-  useEffect(()=>{
-    userAxios.get(`/blockAuth?email=${email}&nav=${true}`).then((res)=>{
-      if(res){
-        if(res.data.message=='blocked'){
-          dispatch(ClientLogout());
-              navigate('/')
-            return
-        }
-        if(res.data.message=="Authentication failed: invalid token !" ){
-          dispatch(ClientLogout());
-        }
-      }else{
-        return
-      }
-    })
-  },[state])
+  // useEffect(()=>{
+  //   userAxios.get(`/blockAuth?email=${email}&nav=${true}`).then((res)=>{
+  //     if(res){
+  //       if(res.data.message=='blocked'){
+  //         dispatch(ClientLogout());
+  //             navigate('/')
+  //           return
+  //       }
+  //       if(res.data.message=="Authentication failed: invalid token !" ){
+  //         dispatch(ClientLogout());
+  //       }
+  //     }else{
+  //       return
+  //     }
+  //   })
+  // },[state])
   const SignOut = () => {
     dispatch(ClientLogout());
     navigate("/")
