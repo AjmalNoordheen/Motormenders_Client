@@ -58,7 +58,7 @@ function ProfessionalList() {
         }
       } catch (error) {
         console.error("An error occurred:", error);
-        navigate('/serverError')
+        // navigate('/serverError')
 
       } finally {
         setIsLoading(false);
