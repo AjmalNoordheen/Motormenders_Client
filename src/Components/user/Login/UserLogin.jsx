@@ -32,9 +32,6 @@ function UserLogin() {
               const name = res.data.userSignUp.name;
               const email = res.data.userSignUp.email;
               const user = res.data.user;
-              
-              console.log(user ,'success')
-
 
               dispatch(ClientLogin({token: token }));
               dispatch(ClientName({ name: name }));
@@ -63,7 +60,6 @@ function UserLogin() {
          userAxios
           .post(`/login?email=${email}`,{email,password})
           .then( res => {
-              console.log('first')
             if(res.data.message=='blocked'){
               toast.error('Access Denied this Account is Blocked')
              setTimeout(() => {
