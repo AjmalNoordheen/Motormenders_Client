@@ -70,8 +70,7 @@ function Bookings() {
          }
       } catch (error) {
         console.log(error);
-        navigate('/serverError')
-
+        // navigate('/serverError')
       }
     }
 
@@ -90,14 +89,12 @@ function Bookings() {
         return
       } 
       if (res.status === 200) {
-        
-        setBooking(res.data.bookingDetails);
+           setBooking(res.data.bookingDetails);
        setSuspense(false)
          }
       } catch (error) {
         console.log(error);
-        navigate('/serverError')
-
+        // navigate('/serverError')
       }
     }
     
