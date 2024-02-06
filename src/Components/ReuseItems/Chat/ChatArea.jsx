@@ -27,7 +27,7 @@ function Chats() {
   const [messages, setMessages] = useState([]);
   const [message, setMessage] = useState('');
   const [timeStamp, setTimeStamp] = useState(Date.now());
-  const [isLoading, setIsLoading] = useState(true); // Track loading state
+  const [isLoading, setIsLoading] = useState(true); 
 
   const [showMes,setShowMes] = useState('')
 
@@ -90,14 +90,12 @@ function Chats() {
         }
       })
       .catch((error) => {
-        navigate('/serverError')
+        console.log(error)
       });
   }, [receiver]);
 
 
   const sendMessage = async () => {
-    console.log(message.length);
-
     if (message.length > 0) {
       let newMessage = {
         text: message,
@@ -118,13 +116,9 @@ function Chats() {
 
   return (
     <div>
-      {/* <div className='w-4/12 h-screen flex justify-center items-center bg-black'> */}
-          {/* <h1 className="text-xl m-[3%]">Chats</h1> */}
 		 {senderType=='professional'?<NavBar/>:<div className="w-full bg-blue-700"><Navbar/></div>}
       <div className="flex h-screen full antialiased justify-center items-center text-gray-800">
         <ChatList isLoading={isLoading} display={display} setDisplay={setDisplay} chatList={chatList} show={showMes} setReceiver={setReceiver} timeStamp={new Date(timeStamp)} type={senderType} />
-        {/* </div> */}
-        
         <div className={display?'hidden md:flex sm:flex-row h-full w-11/12 overflow-x-hidden ':"md:flex sm:flex-row h-full w-11/12 overflow-x-hidden"}>
           <div className="flex flex-col flex-auto h-full p-6 ">
             <div className="flex flex-col flex-auto flex-shrink-0 rounded-2xl bg-gray-200 h-full p-4">
@@ -135,8 +129,7 @@ function Chats() {
                           setDisplay(true)
                         }}
                       ></i>
-                              </div>
-
+                    </div>
               <div
                 className="flex flex-col h-full overflow-x-auto mb-4"
                 ref={messageHolder}
@@ -163,7 +156,6 @@ function Chats() {
                                     {message ? message.text : ""}
                                   </div>
                                   <small className="text-xs text-gray-400">
-                                    {" "}
                                     {new Date(
                                       message?.timestamp
                                     ).toLocaleString("en-US", {
@@ -192,7 +184,6 @@ function Chats() {
                                     {message?.text}
                                   </div>
                                   <small className="text-xs text-gray-400">
-                                    {" "}
                                     {new Date(
                                       message?.timestamp
                                     ).toLocaleString("en-US", {
@@ -235,7 +226,6 @@ function Chats() {
                     </button>
                   </div>
                 </div> :''}
-            
               </div>
             </div>
           </div>
