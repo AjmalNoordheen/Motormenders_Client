@@ -51,11 +51,11 @@ function ProProfile() {
     if(res.data){
       setStatus(res.data)
     }else{
-      navigate('/serverError')
+      // navigate('/serverError')
+      console.log(error)
     }
   
   }
-  console.log(status)
   return (
     <>
        <div className="bg-gray-100 min-h-screen font-sans">
