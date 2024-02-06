@@ -23,21 +23,6 @@ export function NavBar({data,setHeight}) {
     { name: "Profile",href:"/proffesional/profile", current: false },
     { name: "Chats",href:"/proffesional/proChats", current: false },
   ];
-//   useEffect(()=>{
-//     userAxios.get(`/blockAuth?email=${email}&nav=${true}`).then((res)=>{
-//       if(res){
-//         if(res.data.message=='blocked'){
-//           dispatch(ClientLogout());
-//           toast.error('Account has been blocked')
-//               navigate('/')
-//             return
-//         }
-//       }else{
-//         return
-//       }
-//     })
-//   },[])
-
   const SignOut = () => {
     dispatch(ProfessionalLogout());
     navigate("/proffesional/login")
