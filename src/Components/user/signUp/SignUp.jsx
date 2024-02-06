@@ -82,7 +82,7 @@ function Register() {
       .catch((err) => {
         setSpin(false);
         console.log(err);
-        navigate("/serverError");
+        // navigate("/serverError");
       });
   };
   return (
