@@ -11,12 +11,6 @@ function Verify() {
     const user_id = params.get('id');
     const userAxios = userAxiosInstance()
 
-   useEffect(()=>{
-    userAxios.post('/verify',{id:user_id}).then(()=>{
-        console.log('ha ha ha aha hs');
-    })
-   },[])
-
   return (
     <div className="min-h-screen bg-gradient-to-r from-purple-950 to-blue-900 flex items-center justify-center">
       <div className="bg-gray-900 p-8 rounded-lg shadow-xl max-w-md w-full">
