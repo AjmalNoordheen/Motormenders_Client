@@ -29,7 +29,7 @@ function ProGallery() {
       getGallery();
     } catch (error) {
       console.log(error);
-      navigate("/error");
+      // navigate("/error");
     }
   }, [state]);
 
@@ -112,7 +112,7 @@ function ProGallery() {
         setBin(true)
       }
     } catch (error) {
-      
+      console.log(error)
     }
   }
   
