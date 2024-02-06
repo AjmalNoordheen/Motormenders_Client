@@ -40,7 +40,8 @@ const accepted = async(id)=>{
             setLoad(load+1)
         }
     } catch (error) {
-      navigate('/serverError')
+      // navigate('/serverError')
+      console.log(error)
     }
     
 }
@@ -56,7 +57,8 @@ const pendingBookings = async()=>{
         }
       });
     } catch (error) {
-      navigate('/serverError')
+      // navigate('/serverError')
+      console.log(error)
     }
 }
 
@@ -77,7 +79,7 @@ const rejectBooking = async()=>{
         }
     } catch (error) {
         console.log(error)
-        navigate('/serverError')
+        // navigate('/serverError')
 
     }
 }
@@ -94,7 +96,7 @@ const cancelledBooking = ()=>{
       });
     } catch (error) {
         console.log(error)
-        navigate('/serverError')
+        // navigate('/serverError')
 
     }
 }
@@ -112,8 +114,7 @@ const completedBooking =()=>{
       });
     } catch (error) {
         console.log(error)
-        navigate('/serverError')
-
+        // navigate('/serverError')
     }
 }
   return (
