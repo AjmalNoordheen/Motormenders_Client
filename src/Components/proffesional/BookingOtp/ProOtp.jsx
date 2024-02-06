@@ -43,8 +43,6 @@ function ProOtp({id}) {
       
     } catch (error) {
         console.log(error);
-        navigate('/serverError')
-
     }
   }
 
