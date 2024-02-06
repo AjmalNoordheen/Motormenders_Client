@@ -13,26 +13,26 @@ function UserHome() {
   const userAxios = createAxiosInstance();
   const token = useSelector((state) => state.Client.Token);
 
-  // useEffect(() => {
-  //   setIsLoading(false);
+  useEffect(() => {
+    setIsLoading(false);
 
-  //     if (token) {
-  //     userAxios
-  //       .get(`/getDetails`)
-  //       .then((res) => {
-  //         console.log(res.data);
-  //         if (res.data.status === false) {
-  //           dispatch(ClientLogout());
-  //           navigate('/');
-  //         }
-  //       })
-  //       .catch((error) => {
-  //         console.log(error);
-  //       }).finally(()=>{
-  //         setIsLoading(false);
-  //       })
-  //   }
-  // }, [token]);
+    //   if (token) {
+    //   userAxios
+    //     .get(`/getDetails`)
+    //     .then((res) => {
+    //       console.log(res.data);
+    //       if (res.data.status === false) {
+    //         dispatch(ClientLogout());
+    //         navigate('/');
+    //       }
+    //     })
+    //     .catch((error) => {
+    //       console.log(error);
+    //     }).finally(()=>{
+    //       setIsLoading(false);
+    //     })
+    // }
+  }, [token]);
 
   const steps = [
     {
