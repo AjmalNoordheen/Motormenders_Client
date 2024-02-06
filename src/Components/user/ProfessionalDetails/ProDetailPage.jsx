@@ -87,7 +87,6 @@ function ProDetailPage({ email, id }) {
         if (res.data.message == "success") {
           setReview(res.data);
           setTotalRating(res.data.totalRating);
-          console.log(res.data);
         }
       })
       .catch((err) => {
@@ -102,7 +101,6 @@ function ProDetailPage({ email, id }) {
 
   const viewDay = () => {
     setCo(date);
-    console.log(confirm);
   };
 
   useEffect(() => {
