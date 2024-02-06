@@ -19,7 +19,6 @@ const senderData = useSelector((store) => senderType === 'professional' ?   stor
   }
   return (
     <>
-    
     <div className={!display?"hidden md:flex w-11/12 md:w-7/12 lg:6/12 xl:w-4/12 h-[92%]  justify-center items-center rounded-lg bg-gray-300 ml-2 ":"w-11/12 md:w-7/12 lg:6/12 xl:w-4/12 h-[92%] flex justify-center items-center rounded-lg bg-gray-300 md:ml-2 "}>
           <div className="h-[90%]  overflow-scroll w-[96%]  bg-gray-200">
 			<p className="m-2 font-bold">Chats</p>
@@ -27,10 +26,8 @@ const senderData = useSelector((store) => senderType === 'professional' ?   stor
       <Loader/>
     </div>:<>
     { chatList ? (
-                
                 chatList.map((list) => {
-                return (
-                    
+                return (           
                   <div
                     onClick={() => {
                      PassID(list._id) 
@@ -44,33 +41,24 @@ const senderData = useSelector((store) => senderType === 'professional' ?   stor
                     />
                     <div className="overflow-hidden ml-3 h-[60%]  w-full">
                       <h1 className="font-bold">{type=='professional' ?list?.user?.name : list.professional.name}</h1>
-                     
-                     
-                        {show.receiver == list._id ?  <small className="w-[100%]">{show.text}</small>:''}
-                     
+                        {show.receiver == list._id ?  <small className="w-[100%]">{show.text}</small>:''}                     
                     </div>
                     <div className="md:mr-[2%] text-end w-full flex-col h-full">
                       <p className="text-xs">
                         {list.messages &&
                         list.messages[list.messages.length - 1] &&
-                        
                            new Date(
                               list.messages[list.messages.length - 1].timestamp
                             ).toLocaleDateString()
                            }
-                      </p>{" "}
-                      {/* <small>{list.messages.length?new Date( list.messages[list.messages.length - 1].timestamp) < timestamp ? 'read' : 'unread':""}</small> */}
-
-                      {/* <div className="border mt-[50%]  rounded-full w-[40%] text-center text-xs font-bold bg-green-600 text-white h-[26%]">
-												1
-											</div> */}
+                      </p>
                     </div>
                   </div>
                 );
               })
             ) : (
               <div>
-                <h1>no list</h1>{" "}
+                <h1>no list</h1>
               </div>
             )}
     </>
