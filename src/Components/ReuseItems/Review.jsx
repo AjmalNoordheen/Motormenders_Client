@@ -40,7 +40,7 @@ const AddReview = ({proId,setReview}) => {
         toast.error("Failed to submit review");
       }
     } catch (error) {
-      navigate('/error')
+      // navigate('/error')
       console.log(error);
     }
     setReviewText("");
